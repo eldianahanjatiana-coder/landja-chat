@@ -295,7 +295,7 @@ function rc(){
 $('sq').oninput=()=>rc();
 $('b1').onclick=()=>{const s=$('sr');s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')$('sq').focus();else{$('sq').value='';rc()}};
 $('b2').onclick=()=>form(-1);$('fab').onclick=()=>mode==='c'?dpad():form(-1);
-$('b3').onclick=()=>menu('Menu',[['👤 Profil',()=>{first=false;rpf();go('pf')}],['⚙️ Réglages',()=>{rst();go('st')}],['⭐ Messages favoris',favList],['📦 Archivées',archList],['📞 Simuler un appel inconnu',()=>setTimeout(()=>incoming('0349999999','Inconnu','',1),800)]]);
+$('b3').onclick=()=>menu('Menu',[['👤 Profil',()=>{first=false;rpf();go('pf')}],['⚙️ Réglages',()=>{rst();go('st')}],['⭐ Messages favoris',favList],['📦 Archivées',archList],...(window.LC&&LC.isOwner?[['🔑 Accès privés',()=>LC.admin()]]:[]),['📞 Simuler un appel inconnu',()=>setTimeout(()=>incoming('0349999999','Inconnu','',1),800)]]);
 $('bb').onclick=e=>{const b=e.target.closest('[data-m]');if(b){mode=b.dataset.m;rc()}};
 function sim(i){const c=S.cts[i];S.chats[c.p]=S.chats[c.p]||[];S.chats[c.p].push(stamp({me:0,k:'t',t:'Salama ! (message simulé)'}));c.u=(c.u||0)+1;if(!c.mu)sIn();save();rc()}
 $('cl').onpointerdown=e=>{const r=e.target.closest('.row');if(!r||r.dataset.h!==undefined)return;lp=setTimeout(()=>{lp=-1;const i=+r.dataset.i,c=S.cts[i];menu(E(c.n),[[c.f?'☆ Retirer des favoris':'⭐ Favori',()=>{c.f=!c.f;save();rc()}],['📞 Simuler un appel entrant',()=>setTimeout(()=>incoming(c.p,c.n,c.av),800)],['🎥 Simuler un appel vidéo entrant',()=>setTimeout(()=>incoming(c.p,c.n,c.av,0,true),800)],['🔒 Simuler un message privé reçu',()=>privIn(i)],['🔒 Espace privé du contact : '+(c.pa===false?'désactivé':'activé'),()=>{c.pa=c.pa===false;save();toast('Espace privé du contact '+(c.pa===false?'désactivé':'activé'))}],['✏️ Modifier',()=>form(i)],[c.mu?'🔔 Réactiver le son':'🔕 Sourdine',()=>{c.mu=!c.mu;save();rc()}],['📦 Archiver',()=>{c.ar=1;save();rc();toast('Conversation archivée')}],['🗑️ Supprimer',()=>menu('Supprimer '+E(c.n)+' ?',[['Oui, supprimer',()=>{S.cts.splice(i,1);save();rc()}],['Annuler',()=>{}]])]])},600)};
@@ -578,7 +578,7 @@ function qrender(){
   $('kw').textContent=K.q<=1?'⚠️ Connexion faible'+(K.video?' · qualité vidéo réduite automatiquement':''):'';
   $('kcn').textContent=K.video&&!K.rc?'La caméra de '+K.n+' est coupée':'';$('ka').style.opacity=K.video&&!K.rc?.5:1}
 /* messages privés (cadenas) */
-let PV=false,privIdx=0;const PCFG={salt:'916b26381da034e48d6d1f4268b52f92',hash:'fb39df1823cace6197e1d9ea67e7ad307f5cd956475202a60c7ec281912b32aa',it:310000};
+let PV=false,privIdx=0;let PCFG={salt:'916b26381da034e48d6d1f4268b52f92',hash:'fb39df1823cace6197e1d9ea67e7ad307f5cd956475202a60c7ec281912b32aa',it:310000};
 async function chk(c){try{const h=x=>Uint8Array.from(x.match(/../g).map(y=>parseInt(y,16)));const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(c),'PBKDF2',false,['deriveBits']);const b=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:h(PCFG.salt),iterations:PCFG.it},k,256);return [...new Uint8Array(b)].map(y=>y.toString(16).padStart(2,'0')).join('')===PCFG.hash}catch(e){return false}}
 S.pc=S.pc||{};
 const CS=()=>PV?S.pc:S.chats;
@@ -620,7 +620,7 @@ const CFG={apiKey:"AIzaSyDH-FguSfe3eogY4tBLZcEbRvT5zM8Qgv4",authDomain:"landja-c
 const B='https://www.gstatic.com/firebasejs/13.0.0/';
 const st=document.createElement('style');st.textContent='#lcov{position:fixed;inset:0;z-index:99999;background:linear-gradient(160deg,#f76707,#d9480f);display:flex;align-items:center;justify-content:center;padding:20px;font:16px system-ui,sans-serif}#lcov .cd{background:#fff;color:#1f2328;border-radius:20px;padding:20px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:10px}#lcov h2{margin:0;text-align:center;color:#d9480f}#lcov input{font:inherit;padding:13px;border:1px solid #d0d5dd;border-radius:12px;width:100%;box-sizing:border-box}#lcov button{font:inherit;font-weight:800;border:0;border-radius:12px;padding:14px;background:#d9480f;color:#fff}#lcov .t{display:flex;gap:6px}#lcov .t button{flex:1;background:#f1f3f5;color:#1f2328;padding:10px}#lcov .t button.on{background:#d9480f;color:#fff}#lcer{color:#c92a2a;min-height:1.2em;font-size:.9rem;text-align:center}';document.head.appendChild(st);
 const ov=document.createElement('div');ov.id='lcov';
-ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><div id="lcer"></div><button id="lcgo">Se connecter</button><small style="text-align:center;color:#888">version 6</small></div>';
+ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><div id="lcer"></div><button id="lcgo">Se connecter</button><small style="text-align:center;color:#888">version 8</small></div>';
 document.body.appendChild(ov);
 const $$=i=>document.getElementById(i);addEventListener('error',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+e.message}});addEventListener('unhandledrejection',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+((e.reason&&(e.reason.code||e.reason.message))||e.reason)}});let reg=0,FS,AUTH,db,au,me,pname='',subs={},hb=0;
 const setM=r=>{reg=r;$$('lct1').className=r?'':'on';$$('lct2').className=r?'on':'';$$('lcn').style.display=r?'block':'none';$$('lcgo').textContent=r?'Créer mon compte':'Se connecter';$$('lcer').textContent=''};
@@ -652,14 +652,51 @@ window.LC={get uid(){return me&&me.uid},
   const body={from:me.uid,ts:m.ts,pv:pv?1:0};
   if(m.k==='t')body.t=m.t;else{const d=await pack(m);if(!d){m.ok=0;toast('Fichier trop lourd pour être envoyé');save();if(open())draw(1);return}body.k=m.k;body.d=d;if(m.du)body.du=m.du}
   try{await FS.setDoc(r,body);m.ok=2}catch(e){m.ok=0;toast('Message non envoyé')}save();if(open())draw(1)}};
+
+PCFG=null;
+const hx=a=>[...new Uint8Array(a)].map(y=>y.toString(16).padStart(2,'0')).join('');
+async function mk(code){const salt=crypto.getRandomValues(new Uint8Array(16)),k=await crypto.subtle.importKey('raw',new TextEncoder().encode(code),'PBKDF2',false,['deriveBits']),b=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations:310000},k,256);return{salt:hx(salt),hash:hx(b),it:310000}}
+function makeCode(tc){let first='',vt=!!tc;
+ modal(`<h3 id="cti">${tc?'Entrez le code provisoire':'Créez votre code privé'}</h3><p style="margin:0 0 8px;text-align:center;font-size:.85rem;opacity:.7">8 chiffres. S'il est oublié, il ne pourra pas être récupéré.</p><div class="cells" id="cel">${'<i></i>'.repeat(8)}</div><input id="cin" type="tel" inputmode="numeric" maxlength="8" autocomplete="off" class="cin" aria-label="Code à 8 chiffres"><div class="er" id="cer" style="text-align:center"></div>`);
+ const inp=$('cin'),cells=[...$('cel').children],paint=()=>cells.forEach((c,k)=>c.className=k<inp.value.length?'f':'');
+ $('cel').onclick=()=>inp.focus();inp.focus();
+ inp.oninput=async()=>{inp.value=inp.value.replace(/\D/g,'');$('cer').textContent='';paint();if(inp.value.length<8)return;const v=inp.value;
+  if(vt){inp.disabled=true;const ok=await vf(v,tc).catch(()=>false);inp.disabled=false;inp.value='';paint();if(!ok){$('cer').textContent='Code provisoire incorrect';inp.focus();return}vt=false;$('cti').textContent='Créez votre code privé';inp.focus();return}
+  if(!first){first=v;inp.value='';paint();$('cti').textContent='Confirmez votre code';return}
+  if(v!==first){first='';inp.value='';paint();$('cti').textContent='Créez votre code privé';$('cer').textContent='Les deux codes ne sont pas identiques';return}
+  inp.disabled=true;
+  try{const ref=FS.doc(db,'users',me.uid,'private','cfg'),g=await FS.getDoc(ref);if(g.exists()){PCFG=g.data();S.pcfg=PCFG;save();cm();toast('Code déjà créé : entrez-le');return}
+   const cfg=await mk(v);await FS.setDoc(ref,cfg);PCFG=cfg;S.pcfg=cfg;save();cm();toast('Code créé ✓');enterPriv()}
+  catch(e){inp.disabled=false;inp.value='';first='';paint();$('cti').textContent='Créez votre code privé';$('cer').textContent='Connexion internet nécessaire'}}}
+const OWNER='eldianahanjatiana@gmail.com',DUMMY={salt:'0'.repeat(32),hash:'f'.repeat(64),it:310000};let AL=null;
+async function vf(code,cfg){const sl=new Uint8Array(cfg.salt.match(/../g).map(x=>parseInt(x,16))),k=await crypto.subtle.importKey('raw',new TextEncoder().encode(code),'PBKDF2',false,['deriveBits']),b=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:sl,iterations:cfg.it||310000},k,256);return hx(b)===cfg.hash}
+$('clk').onclick=async()=>{try{const[a,c]=await Promise.all([FS.getDoc(FS.doc(db,'privateAllowed',me.uid)),FS.getDoc(FS.doc(db,'users',me.uid,'private','cfg'))]);AL=a.exists()?a.data():null;if(c.exists()){PCFG=c.data();S.pcfg=PCFG}else if(AL)PCFG=null}catch(e){AL=AL||(S.pcfg?{}:null)}
+ if(!AL){PCFG=DUMMY;codeDlg();return}
+ if(PCFG&&PCFG!==DUMMY){codeDlg();return}
+ makeCode(AL.tmp?AL:null)};
+async function admin(){cm();
+ const st='width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;box-sizing:border-box;font:inherit';
+ modal(`<h3>Accès privés</h3><input id="adm" type="email" placeholder="Email à autoriser" autocapitalize="none" style="${st}"><div id="ade" style="color:#c92a2a;min-height:1.3em;font-size:.85rem"></div><button class="bt" id="adg">Autoriser</button><div id="adl" style="margin-top:12px;font-size:.9rem"></div>`);
+ const list=async()=>{const sn=await FS.getDocs(FS.collection(db,'privateAllowed'));$('adl').innerHTML=sn.docs.map(d=>{const x=d.data();return `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0"><span>${E(x.email||d.id)}</span>${d.id===me.uid?'':`<button data-u="${d.id}" style="border:0;background:#f1f3f5;border-radius:8px;padding:6px 10px">Retirer</button>`}</div>`}).join('')||'Aucune personne autorisée';$('adl').querySelectorAll('button[data-u]').forEach(b=>b.onclick=async()=>{try{await FS.deleteDoc(FS.doc(db,'privateAllowed',b.dataset.u));toast('Accès retiré');list()}catch(e){toast('Échec')}})};
+ list().catch(()=>{$('adl').textContent='Liste indisponible'});
+ $('adg').onclick=async()=>{const em=$('adm').value.trim().toLowerCase();if(!em)return;$('ade').textContent='Vérification…';let u;try{u=await LC.find(em)}catch(e){$('ade').textContent='Pas de connexion internet';return}
+  if(u==='self'){$('ade').textContent="C'est votre propre compte";return}if(!u){$('ade').textContent='Aucun compte avec cet email';return}
+  const tmp=String(crypto.getRandomValues(new Uint32Array(1))[0]%1e8).padStart(8,'0'),txt=`${S.me.n||'Landja'} vous a autorisé à utiliser l'onglet cadenas pour vos messages privés. Votre code provisoire est : ${tmp}. Vous pourrez le modifier dès la première utilisation.`;
+  cm();modal(`<h3>Confirmer l'envoi</h3><p style="font-size:.95rem">${E(txt)}</p><p style="font-size:.8rem;opacity:.7">Ce message sera envoyé à ${E(em)} dans votre conversation Landja chat. Tant que vous ne confirmez pas, rien n'est activé.</p><button class="bt" id="adc">Confirmer et envoyer</button><button id="adx" style="margin-top:8px;width:100%;padding:12px;border:0;border-radius:12px;background:#f1f3f5;font:inherit">Annuler</button>`);
+  $('adx').onclick=()=>cm();
+  $('adc').onclick=async()=>{$('adc').disabled=true;try{const cfg=await mk(tmp);await FS.setDoc(FS.doc(db,'privateAllowed',u.uid),{email:em,salt:cfg.salt,hash:cfg.hash,it:cfg.it,tmp:true,ts:Date.now()});await FS.setDoc(FS.doc(db,'chats',cid(u.uid)),{members:[me.uid,u.uid]},{merge:true});await FS.setDoc(FS.doc(FS.collection(db,'chats',cid(u.uid),'messages')),{from:me.uid,t:txt,ts:Date.now()});cm();toast('Autorisation envoyée ✓')}catch(e){$('adc').disabled=false;toast("Échec de l'envoi")}}}}
+LC.admin=admin;Object.defineProperty(LC,'isOwner',{get(){return !!me&&me.email.toLowerCase()===OWNER}});
 const _ep=enterPriv;enterPriv=function(){cur.plr=Date.now();return _ep()};const _oc=openChat;openChat=function(i){S.cts[i].lr=Date.now();return _oc(i)};
 async function start(u){me=u;ov.style.display='none';
- if(S.acct&&S.acct!==u.uid)Object.assign(S,{cts:[],chats:{},pc:{},uidOf:{},dr:{},del:{}});
+ if(S.acct&&S.acct!==u.uid)Object.assign(S,{cts:[],chats:{},pc:{},uidOf:{},dr:{},del:{},pcfg:null});
  S.acct=u.uid;S.uidOf=S.uidOf||{};S.del=S.del||{};S.cts=S.cts.filter(x=>!/^034000000\d$/.test(x.p));
  const nm=pname||u.displayName;if(nm&&!S.me.n)S.me.n=nm;save();rc();$$('lcem').textContent='Compte : '+u.email;
  const prof=()=>FS.setDoc(FS.doc(db,'users',u.uid),{name:S.me.n||u.email,email:u.email,emailLower:u.email.toLowerCase(),av:S.me.av,lastSeen:Date.now(),pa:true},{merge:true}).catch(e=>console.log(e.code));
+ try{const sn=await FS.getDoc(FS.doc(db,'users',u.uid,'private','cfg'));PCFG=sn.exists()?sn.data():null;S.pcfg=PCFG}catch(e){PCFG=S.pcfg||null}try{const al=await FS.getDoc(FS.doc(db,'privateAllowed',u.uid));AL=al.exists()?al.data():null}catch(e){}
+ if(u.email.toLowerCase()===OWNER){AL=AL||{};try{await FS.setDoc(FS.doc(db,'privateAllowed',u.uid),{email:u.email.toLowerCase(),ts:Date.now()},{merge:true})}catch(e){}}
+ if(!AL)PCFG=DUMMY;
  await prof();clearInterval(hb);hb=setInterval(()=>{if(!document.hidden)prof()},30000);LC.sync()}
-function stop(){clearInterval(hb);Object.values(subs).forEach(a=>a.forEach(f=>f&&f()));subs={};me=null;ov.style.display='flex'}
+function stop(){PCFG=null;clearInterval(hb);Object.values(subs).forEach(a=>a.forEach(f=>f&&f()));subs={};me=null;ov.style.display='flex'}
 $('lcout').onclick=()=>{AUTH.signOut(au)};
 (async()=>{try{const[a,b,c]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-firestore.js')]);
  const app=a.initializeApp(CFG);AUTH=b;FS=c;au=b.getAuth(app);db=c.getFirestore(app);
