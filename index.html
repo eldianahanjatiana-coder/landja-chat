@@ -182,6 +182,15 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
 #tyb .b{display:inline-block;animation:inL .3s cubic-bezier(.2,.8,.2,1)}
 .dots{display:flex;gap:5px;padding:6px 2px}.dots i{width:8px;height:8px;border-radius:50%;background:var(--mu);animation:bn 1.2s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
 #ch.pv #tyb{background:color-mix(in srgb,#000 14%,var(--bg))}#ch.pv #tyb .b{opacity:.55;box-shadow:none;padding:4px 8px}#ch.pv .dots i{width:5px;height:5px;animation-duration:1.8s}
+
+#bb,#cc,#cv{display:none!important}#fab{bottom:calc(24px + env(safe-area-inset-bottom))}
+.b{max-width:min(82%,calc(100vw - 70px))}
+#pb2{height:110px;max-height:none;border-radius:12px;resize:vertical;padding:12px}
+.bio{display:none;margin:8px 0 0;padding:10px 12px;background:var(--cd);border-radius:12px;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.95rem}
+#pvw{position:fixed;inset:0;z-index:99999;background:#000e;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:fi .2s}
+#pvw img{max-width:100%;max-height:82%;object-fit:contain;pointer-events:none;-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
+#pvw b{color:#fff;margin-top:12px}
+#pvw button{position:absolute;top:calc(12px + env(safe-area-inset-top));right:12px;width:44px;height:44px;border-radius:50%;background:#fff3;color:#fff;font-size:1.4rem}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head>
 <body>
@@ -199,7 +208,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
 
 <section class="pg" id="pf">
   <div class="tb"><button class="ib" id="pbk" data-ic="back"></button><h1 id="pt">Votre profil</h1></div>
-  <div class="pc"><div class="ct" id="pv" style="width:96px;height:96px;font-size:3rem;align-self:center;overflow:hidden"></div><div class="avs" id="pa"></div><button class="bt" id="pim" style="background:var(--cd);color:var(--tx)">Choisir une photo du téléphone</button><button class="mi" id="prm" style="display:none">Retirer la photo</button><input type="file" id="pfl" accept="image/*" hidden><input id="pn" placeholder="Votre nom" maxlength="30" autocomplete="off"><button class="bt" id="ps">Enregistrer</button></div>
+  <div class="pc"><div class="ct" id="pv" style="width:96px;height:96px;font-size:3rem;align-self:center;overflow:hidden"></div><div class="avs" id="pa"></div><button class="bt" id="pim" style="background:var(--cd);color:var(--tx)">Choisir une photo du téléphone</button><button class="mi" id="prm" style="display:none">Retirer la photo</button><input type="file" id="pfl" accept="image/*" hidden><input id="pn" placeholder="Votre nom" maxlength="30" autocomplete="off"><textarea id="pb2" maxlength="300" placeholder="Décrivez votre personnalité (visible par vos contacts)"></textarea><small style="color:var(--mu)">Votre photo et cette description sont visibles seulement par vos contacts.</small><button class="bt" id="ps">Enregistrer</button></div>
 </section>
 
 <section class="pg" id="ct">
@@ -242,7 +251,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
     <div class="opt"><span>Thème</span><select id="s3"><option value="auto">Automatique</option><option value="light">Clair</option><option value="dark">Sombre</option></select></div>
     <label class="opt"><span>Économie de données (photos réduites)</span><input type="checkbox" id="s4"></label>
     <div class="opt" style="flex-direction:column;align-items:flex-start"><span>Couleur du thème</span><div class="avs" id="s6"></div></div>
-    <label class="opt"><span>Ne pas déranger (appels entrants)</span><input type="checkbox" id="s7"></label>
+    <label class="opt" style="display:none"><span>Ne pas déranger (appels entrants)</span><input type="checkbox" id="s7"></label>
     <div class="opt"><span id="lcem"></span></div><button class="bt" id="s5">Mon profil</button><button class="bt" id="lcout" style="background:var(--cd);color:var(--tx)">Se déconnecter</button>
     <div class="opt" style="flex-direction:column;align-items:flex-start;gap:4px"><b>Landja Chat</b><span>Version 1.0 (test)</span><span>Développée par RAFARALAHY Herimanintsoa Lanjatiana</span></div>
   </div>
@@ -299,10 +308,10 @@ $('gr').textContent='Bienvenue'+(S.me.n?', '+S.me.n:'');
 $('go').onclick=()=>{if(!S.me.n){first=true;rpf();root('pf')}else root('ct')};
 const pimg=()=>S.me.img?`<img src="${S.me.img}" alt="" style="width:100%;height:100%;object-fit:cover">`:S.me.av;
 function pvr(){$('pv').innerHTML=pimg();$('prm').style.display=S.me.img?'block':'none'}
-function rpf(){pvr();$('pt').textContent=first?'Créez votre profil':'Votre profil';$('pbk').style.visibility=first?'hidden':'visible';$('pn').value=S.me.n;$('pa').innerHTML=AV.map(a=>`<button class="ib${S.me.av===a?' cur':''}" data-a="${a}">${a}</button>`).join('')}
-$('pa').onclick=e=>{const b=e.target.closest('[data-a]');if(b){S.me.av=b.dataset.a;S.me.img='';rpf()}};
+function rpf(){pvr();$('pt').textContent=first?'Créez votre profil':'Votre profil';$('pbk').style.visibility=first?'hidden':'visible';$('pn').value=S.me.n;$('pb2').value=S.me.bio||'';$('pa').innerHTML=AV.map(a=>`<button class="ib${S.me.av===a?' cur':''}" data-a="${a}">${a}</button>`).join('')}
+$('pa').onclick=e=>{const b=e.target.closest('[data-a]');if(b){S.me.av=b.dataset.a;S.me.img='';S.me.big='';window.pubSave&&window.pubSave();rpf()}};
 $('pbk').onclick=back;
-$('ps').onclick=()=>{const n=$('pn').value.trim();if(!n){toast('Entrez votre nom');return}S.me.n=n;save();toast('Profil enregistré ✓');if(first){first=false;root('ct')}else back()};
+$('ps').onclick=()=>{const n=$('pn').value.trim();if(!n){toast('Entrez votre nom');return}S.me.n=n;S.me.bio=$('pb2').value.trim().slice(0,300);save();window.pubSave&&window.pubSave();toast('Profil enregistré ✓');if(first){first=false;root('ct')}else back()};
 /* contacts */
 function rc(){
   const q=$('sq').value.toLowerCase();
@@ -415,8 +424,9 @@ $('s4').onchange=()=>{S.cfg.ds=+$('s4').checked;save()};
 $('s5').onclick=()=>{first=false;rpf();go('pf')};
 $('sbk').onclick=back;
 $('pim').onclick=()=>$('pfl').click();
-$('pfl').onchange=e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=200;const z=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-z)/2,(im.height-z)/2,z,z,0,0,200,200);S.me.img=c.toDataURL('image/jpeg',.8);save();rpf()};im.src=URL.createObjectURL(f)};
-$('prm').onclick=()=>{S.me.img='';save();rpf()};
+$('pfl').onchange=e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=200;const z=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-z)/2,(im.height-z)/2,z,z,0,0,200,200);S.me.img=c.toDataURL('image/jpeg',.8);{const c2=document.createElement('canvas');c2.width=c2.height=Math.min(640,z);c2.getContext('2d').drawImage(im,(im.width-z)/2,(im.height-z)/2,z,z,0,0,c2.width,c2.height);S.me.big=c2.toDataURL('image/jpeg',.82)}save();window.pubSave&&window.pubSave();rpf()};im.src=URL.createObjectURL(f)};
+$('prm').onclick=()=>{S.me.img='';S.me.big='';save();window.pubSave&&window.pubSave();rpf()};
+$('pv').onclick=()=>{if(S.me.img)viewPhoto(S.me.big||S.me.img,S.me.n)};$('pv').style.cursor='zoom-in';
 if(S.me.n){$('wa').style.display='flex';$('wa').innerHTML=pimg()}
 /* couleurs du thème */
 const COLS=[['Orange','#d9480f'],['Bleu','#1971c2'],['Vert','#2b8a3e'],['Violet','#6741d9'],['Rose','#c2255c'],['Rouge','#c92a2a'],['Turquoise','#0b7285'],['Gris foncé','#495057']];
@@ -637,7 +647,11 @@ function archList(){const a=S.cts.map((c,i)=>({c,i})).filter(x=>x.c.ar);if(!a.le
 function sendPos(){if(!navigator.geolocation){toast('Position indisponible');return}toast('Recherche de la position…');
   navigator.geolocation.getCurrentPosition(p=>{$('inp').value='📍 Ma position : https://maps.google.com/?q='+p.coords.latitude.toFixed(5)+','+p.coords.longitude.toFixed(5);send()},()=>toast('Position refusée ou indisponible'))}
 function sendCt(){menu('Envoyer quel contact ?',S.cts.map(c=>[E(c.av)+' '+E(c.n),()=>{$('inp').value='👤 '+c.n+' · '+c.p;send()}]))}
-function profView(i){const c=S.cts[i];modal(`<div style="text-align:center"><div class="ct" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small></div><button class="mi" id="pvx">Fermer</button>`);$('pvx').onclick=cm}
+const PHRE=/^data:image\/(jpeg|png);base64,[A-Za-z0-9+\/=]+$/;
+function viewPhoto(src,name){if(!PHRE.test(src||''))return;const o=document.createElement('div');o.id='pvw';const im=new Image();im.draggable=false;im.alt='';im.src=src;const nm=document.createElement('b');nm.textContent=name||'';const x=document.createElement('button');x.textContent='✕';x.setAttribute('aria-label','Fermer');o.append(im,nm,x);const kd=e=>{if(e.key==='Escape')cl()};const cl=()=>{o.remove();document.removeEventListener('keydown',kd)};document.addEventListener('keydown',kd);o.onclick=cl;o.oncontextmenu=e=>e.preventDefault();document.body.appendChild(o)}
+function loadPub(c){return window.LC&&LC.pub?LC.pub(c):Promise.resolve(null)}
+function fillPub(c){loadPub(c).then(d=>{if(!d)return;const a=$('pvph');if(a&&PHRE.test(d.big||'')){const im=new Image();im.draggable=false;im.alt='';im.src=d.big;im.style.cssText='width:100%;height:100%;object-fit:cover;pointer-events:none';a.innerHTML='';a.appendChild(im);a.style.overflow='hidden';a.style.cursor='zoom-in';a.onclick=()=>viewPhoto(d.big,c.n)}const b=$('pvbio');if(b&&typeof d.bio==='string'&&d.bio){b.textContent=d.bio.slice(0,300);b.style.display='block'}}).catch(()=>{})}
+function profView(i){const c=S.cts[i];modal(`<div style="text-align:center"><div class="ct" id="pvph" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small><p class="bio" id="pvbio"></p></div><button class="mi" id="pvx">Fermer</button>`);$('pvx').onclick=cm;fillPub(c)}
 function copyT(t){if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>toast('Copié ✓'),()=>toast('Copie impossible'));else toast('Copie impossible')}
 function shareC(c){const t='👤 '+c.n+' · '+c.p;if(navigator.share)navigator.share({text:t}).catch(()=>{});else copyT(t)}
 const BGS=[['Par défaut',''],['Vert doux','#2b8a3e33'],['Bleu doux','#1971c233'],['Rose doux','#c2255c33'],['Violet doux','#6741d933'],['Jaune doux','#f0a50040'],['Gris','#49505733']];
@@ -645,7 +659,8 @@ function bgMenu(i){const c=S.cts[i];menu('Couleur de la conversation',BGS.map(b=
 function clearChat(i){const c=S.cts[i];S.del=S.del||{};(S.chats[c.p]||[]).forEach(m=>{if(m.fid)S.del[m.fid]=1});S.chats[c.p]=[];c.u=0;save();rc();toast('Conversation vidée')}
 function more(i){const c=S.cts[i];menu(E(c.n)+' · Plus',[["📋 Copier l'adresse email",()=>copyT(c.p)],['📤 Partager ce contact',()=>shareC(c)],['🎨 Couleur de la conversation',()=>bgMenu(i)],['🧹 Vider la conversation',()=>menu('Vider la conversation avec '+E(c.n)+' ?',[['Oui, vider (chez moi seulement)',()=>clearChat(i)],['Annuler',()=>{}]])]])}
 function fiche(){const c=cur,i=S.cts.indexOf(c);
-  modal(`<div style="text-align:center"><div class="ct" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small></div><button class="mi" id="f1">📞 Appeler</button><button class="mi" id="f2">🎥 Vidéo</button><button class="mi" id="f3">${c.b?'✅ Débloquer':'🚫 Bloquer'}</button><button class="mi" id="f4">${c.mu?'🔔 Réactiver le son':'🔕 Sourdine'}</button><button class="mi" id="f5">📦 Archiver</button>`);
+  modal(`<div style="text-align:center"><div class="ct" id="pvph" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small><p class="bio" id="pvbio"></p></div><button class="mi" id="f1" style="display:none">📞 Appeler</button><button class="mi" id="f2" style="display:none">🎥 Vidéo</button><button class="mi" id="f3">${c.b?'✅ Débloquer':'🚫 Bloquer'}</button><button class="mi" id="f4">${c.mu?'🔔 Réactiver le son':'🔕 Sourdine'}</button><button class="mi" id="f5">📦 Archiver</button>`);
+  fillPub(c);
   $('f1').onclick=()=>{cm();startCall(i)};$('f2').onclick=()=>{cm();startCall(i,true)};
   $('f3').onclick=()=>{c.b=!c.b;save();cm();toast(c.b?'Contact bloqué':'Contact débloqué')};
   $('f4').onclick=()=>{c.mu=!c.mu;save();cm();toast(c.mu?'Sourdine activée':'Son réactivé')};
@@ -660,7 +675,7 @@ const CFG={apiKey:"AIzaSyDH-FguSfe3eogY4tBLZcEbRvT5zM8Qgv4",authDomain:"landja-c
 const B='https://www.gstatic.com/firebasejs/13.0.0/';
 const st=document.createElement('style');st.textContent='#lcov{position:fixed;inset:0;z-index:99999;background:linear-gradient(160deg,#f76707,#d9480f);display:flex;align-items:center;justify-content:center;padding:20px;font:16px system-ui,sans-serif}#lcov .cd{background:#fff;color:#1f2328;border-radius:20px;padding:20px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:10px}#lcov h2{margin:0;text-align:center;color:#d9480f}#lcov input{font:inherit;padding:13px;border:1px solid #d0d5dd;border-radius:12px;width:100%;box-sizing:border-box}#lcov button{font:inherit;font-weight:800;border:0;border-radius:12px;padding:14px;background:#d9480f;color:#fff}#lcov .t{display:flex;gap:6px}#lcov .t button{flex:1;background:#f1f3f5;color:#1f2328;padding:10px}#lcov .t button.on{background:#d9480f;color:#fff}#lcov .pw{position:relative}#lcov .pw input{padding-right:52px}#lcov .pw button{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;color:#555;padding:8px 10px;border-radius:10px;line-height:0}#lcov .pw svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}#lcov button.lk{background:none;color:#d9480f;padding:6px;font-weight:600;text-decoration:underline}#lcer{color:#c92a2a;min-height:1.2em;font-size:.9rem;text-align:center}';document.head.appendChild(st);
 const ov=document.createElement('div');ov.id='lcov';
-ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 13</small></div>';
+ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 14</small></div>';
 document.body.appendChild(ov);
 const $$=i=>document.getElementById(i);addEventListener('error',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+e.message}});addEventListener('unhandledrejection',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+((e.reason&&(e.reason.code||e.reason.message))||e.reason)}});let reg=0,FS,AUTH,db,au,me,pname='',subs={},hb=0;
 const setM=r=>{reg=r;$$('lct1').className=r?'':'on';$$('lct2').className=r?'on':'';$$('lcn').style.display=r?'block':'none';$$('lcgo').textContent=r?'Créer mon compte':'Se connecter';$$('lcfg').style.display=r?'none':'block';$$('lcer').textContent=''};
@@ -690,8 +705,9 @@ function sub(ct){const o=S.uidOf&&S.uidOf[ct.p];if(!o||subs[o])return;subs[o]=[]
 const rd=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b)});
 const shrink=(d,mx,q)=>new Promise(r=>{const im=new Image();im.onload=()=>{const k=Math.min(1,mx/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',q))};im.onerror=()=>r(d);im.src=d});
 async function pack(m){try{let d=await rd(await (await fetch(m.u)).blob());if(m.k==='p'&&d.length>650000)d=await shrink(d,900,.55);if(m.k==='p'&&d.length>650000)d=await shrink(d,640,.45);return d.length>900000?null:d}catch(e){return null}}
-let lastTy=0;
+const PUBC={};let lastTy=0;
 window.LC={get uid(){return me&&me.uid},
+ async pub(c){const o=S.uidOf&&S.uidOf[c.p];if(!o||!me)return null;const k=PUBC[o];if(k&&Date.now()-k.t<60000)return k.d;try{const sn=await FS.getDoc(FS.doc(db,'users',o,'pub','profile'));const d=sn.exists()?sn.data():null;PUBC[o]={t:Date.now(),d};return d}catch(e){return null}},
  typ(){if(!me||!cur||S.cfg.tyo===0)return;const o=S.uidOf&&S.uidOf[cur.p];if(!o||!$('inp').value.trim())return;if(PV&&cur.pa===false)return;const n=Date.now();if(n-lastTy<3000)return;lastTy=n;FS.setDoc(FS.doc(db,'chats',cid(o)),{[(PV?'p_':'t_')+me.uid]:n},{merge:true}).catch(()=>{})},
  async find(e){const sn=await FS.getDocs(FS.query(FS.collection(db,'users'),FS.where('emailLower','==',e),FS.limit(1)));if(sn.empty)return null;const d=sn.docs[0];return d.id===me.uid?'self':{uid:d.id}},
  sync(){S.cts.forEach(async ct=>{if(S.uidOf&&S.uidOf[ct.p]){sub(ct);return}try{const u=await LC.find(ct.p);if(u&&u!=='self'){S.uidOf=S.uidOf||{};S.uidOf[ct.p]=u.uid;sub(ct)}}catch(e){}})},
@@ -743,6 +759,7 @@ const CSTD=u=>FS.doc(db,'users',u.uid,'store','contacts');
 const cstrip=c=>({n:c.n||c.p,p:c.p,av:c.av||'🙂',f:c.f?1:0,mu:c.mu?1:0,b:c.b?1:0,ar:c.ar?1:0,pa:c.pa===false?false:true,bg:c.bg||''});
 function cloudSave(){if(!cOK||!me)return;clearTimeout(cT);cT=setTimeout(()=>{if(!cOK||!me)return;const data={cts:S.cts.map(cstrip),uo:Object.entries(S.uidOf||{}).map(([p,u])=>({p,u})),gone:Object.keys(S.gone||{}),del:Object.keys(S.del||{}).slice(-3000)},k=JSON.stringify(data);if(k===CK)return;FS.setDoc(CSTD(me),{...data,upd:Date.now()}).then(()=>{CK=k}).catch(e=>console.log(e.code))},1500)}
 window.cloudSave=cloudSave;
+window.pubSave=async()=>{if(!me)return;const h=(S.me.big||'').length+':'+(S.me.bio||'');try{await FS.setDoc(FS.doc(db,'users',me.uid,'pub','profile'),{big:S.me.big||'',bio:S.me.bio||'',ts:Date.now()});S.me.pubH=h;save()}catch(e){console.log(e.code)}};
 async function recover(u){
  const q=await FS.getDocs(FS.query(FS.collection(db,'chats'),FS.where('members','array-contains',u.uid)));
  for(const d of q.docs){const o=(d.data().members||[]).find(x=>x!==u.uid);if(!o||Object.values(S.uidOf||{}).includes(o))continue;
@@ -760,10 +777,12 @@ async function cloudLoad(u){
   await recover(u);
   CK='';cOK=1;
  }catch(e){console.log('cloud',e.code||e)}
+ try{const pd=await FS.getDoc(FS.doc(db,'users',u.uid,'pub','profile'));if(pd.exists()){const x=pd.data();if(!S.me.bio&&x.bio)S.me.bio=x.bio;if(!S.me.big&&x.big){S.me.big=x.big;if(!S.me.img)S.me.img=await shrink(x.big,200,.8)}}}catch(e){}
+ {const h=(S.me.big||'').length+':'+(S.me.bio||'');if((S.me.big||S.me.bio)&&h!==S.me.pubH)window.pubSave()}
  save();rc();
 }
 async function start(u){me=u;ov.style.display='none';cOK=0;
- if(S.acct&&S.acct!==u.uid)Object.assign(S,{cts:[],chats:{},pc:{},uidOf:{},dr:{},del:{},gone:{},pcfg:null});
+ if(S.acct&&S.acct!==u.uid)Object.assign(S,{cts:[],chats:{},pc:{},uidOf:{},dr:{},del:{},gone:{},pcfg:null,me:{n:'',av:(S.me&&S.me.av)||'🙂',img:'',big:'',bio:''}});
  S.acct=u.uid;S.uidOf=S.uidOf||{};S.del=S.del||{};S.gone=S.gone||{};S.cts=S.cts.filter(x=>!/^034000000\d$/.test(x.p));
  const nm=pname||u.displayName;if(nm&&!S.me.n)S.me.n=nm;save();rc();$$('lcem').textContent='Compte : '+u.email;
  const prof=()=>FS.setDoc(FS.doc(db,'users',u.uid),{name:S.me.n||u.email,email:u.email,emailLower:u.email.toLowerCase(),av:S.me.av,lastSeen:Date.now(),pa:true},{merge:true}).catch(e=>console.log(e.code));
