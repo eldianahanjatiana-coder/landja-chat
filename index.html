@@ -166,12 +166,22 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
 #mb{position:relative}
 .cells{display:flex;gap:6px;justify-content:center;margin:8px 0}
 .cells i{width:32px;height:44px;border:2px solid var(--bd);border-radius:10px;display:block}
-.cells i.f{background:var(--or);border-color:var(--or)}
+.cells i.f{background:var(--or);border-color:var(--or);color:#fff;font:700 1.3rem/40px system-ui,sans-serif;text-align:center;font-style:normal}.stp{display:inline-block;background:var(--or);color:#fff;font-weight:700;font-size:.85rem;padding:5px 14px;border-radius:999px}.cey{display:block;margin:6px auto 0;border:0;background:none;color:var(--or);font:600 .9rem system-ui,sans-serif;text-decoration:underline;padding:8px}
 .cin{position:absolute;opacity:0;height:1px;width:1px;left:0;top:0}
 .kb>*,.kbn,.kg,.kt2,.kr{flex-shrink:0}
 .kbn span{flex:none;aspect-ratio:1/1;min-width:0}
 .kbn.rd span{border-radius:50%}
 .vs{font-size:.75rem;background:#fff3;border-radius:10px;padding:2px 6px}
+
+.b{overflow-wrap:anywhere;min-width:0}.mr{min-width:0;max-width:100%}#ms{overflow-x:hidden}
+@keyframes inL{from{opacity:0;transform:translateX(-18px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes inR{from{opacity:0;transform:translateX(18px) scale(.94)}60%{transform:translateX(-2px) scale(1.01)}to{opacity:1;transform:none}}
+.mr.nw{animation:none}.mr.nw .b{animation:inR .42s cubic-bezier(.2,.8,.2,1)}.mr.o.nw .b{animation:inL .38s cubic-bezier(.2,.8,.2,1)}
+@keyframes bn{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+#tyb{display:none;padding:0 12px 8px;background:color-mix(in srgb,var(--or) 6%,var(--bg))}
+#tyb .b{display:inline-block;animation:inL .3s cubic-bezier(.2,.8,.2,1)}
+.dots{display:flex;gap:5px;padding:6px 2px}.dots i{width:8px;height:8px;border-radius:50%;background:var(--mu);animation:bn 1.2s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+#ch.pv #tyb{background:color-mix(in srgb,#000 14%,var(--bg))}#ch.pv #tyb .b{opacity:.55;box-shadow:none;padding:4px 8px}#ch.pv .dots i{width:5px;height:5px;animation-duration:1.8s}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head>
 <body>
@@ -210,6 +220,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
   <div class="sub" id="pb"></div>
   <div class="sub" id="sxw"><input id="sx" placeholder="Rechercher dans la discussion"></div>
   <div id="ms"></div>
+  <div id="tyb"><div class="b o"><div class="dots"><i></i><i></i><i></i></div></div></div>
   <div class="sub" id="rb"></div>
   <div class="sub" id="chp"></div>
   <div class="cb">
@@ -225,6 +236,9 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
   <div class="pc">
     <label class="opt"><span>Son</span><input type="checkbox" id="s1"></label>
     <label class="opt"><span>Vibreur à la réception</span><input type="checkbox" id="s2"></label>
+    <label class="opt"><span>Montrer quand j'écris</span><input type="checkbox" id="s10"></label>
+    <div class="opt"><span>Son de réception</span><span style="display:flex;gap:6px;align-items:center"><select id="s8"></select><button type="button" id="s8p" style="border:0;border-radius:10px;padding:8px 12px;background:var(--or);color:#fff;font-size:1rem" aria-label="Écouter">▶</button></span></div>
+    <div class="opt"><span>Son d'envoi</span><span style="display:flex;gap:6px;align-items:center"><select id="s9"></select><button type="button" id="s9p" style="border:0;border-radius:10px;padding:8px 12px;background:var(--or);color:#fff;font-size:1rem" aria-label="Écouter">▶</button></span></div>
     <div class="opt"><span>Thème</span><select id="s3"><option value="auto">Automatique</option><option value="light">Clair</option><option value="dark">Sombre</option></select></div>
     <label class="opt"><span>Économie de données (photos réduites)</span><input type="checkbox" id="s4"></label>
     <div class="opt" style="flex-direction:column;align-items:flex-start"><span>Couleur du thème</span><div class="avs" id="s6"></div></div>
@@ -248,7 +262,7 @@ const sv=n=>`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=
 IC.lock='<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>';document.querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=sv(e.dataset.ic));
 let S={me:{n:'',av:'🙂'},cfg:{snd:1,vib:1,th:'auto',ds:0},cts:[{n:'Exemple 1',p:'0340000001',on:1,av:'🦁'},{n:'Exemple 2',p:'0340000002',on:0,av:'🌴',pa:false},{n:'Exemple 3',p:'0340000003',on:1,av:'🦋'}],chats:{},dr:{}};
 try{Object.assign(S,JSON.parse(localStorage.getItem('lc2')||'{}'))}catch(e){}
-const save=()=>{try{const c={},q={};for(const k in S.chats)c[k]=S.chats[k].filter(m=>m.k==='t');for(const k in (S.pc||{}))q[k]=S.pc[k].filter(m=>m.k==='t');localStorage.setItem('lc2',JSON.stringify({...S,chats:c,pc:q}))}catch(e){}};
+const save=()=>{try{const c={},q={};for(const k in S.chats)c[k]=S.chats[k].filter(m=>m.k==='t');for(const k in (S.pc||{}))q[k]=S.pc[k].filter(m=>m.k==='t');localStorage.setItem('lc2',JSON.stringify({...S,chats:c,pc:q}))}catch(e){}if(window.cloudSave)window.cloudSave()};
 const AV=['🙂','😎','🦁','🐱','🌴','🦋','🐼','🌺'],RPK=['👍','❤️','😂','😮','😢','🙏','😡','😊'];
 let uid=Date.now(),cur=null,mode='m',stack=['w'],sel={},tm={},rq=null,ed=null,pend=[],rpk=0,AU={},first=false,newId=0,ac,lp=0;
 const hm=()=>{const n=new Date();return String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')};
@@ -258,8 +272,9 @@ const dlab=d=>{const n=new Date();if(d===n.toDateString())return"Aujourd'hui";n.
 const last=c=>{const a=S.chats[c.p];return a&&a[a.length-1]};
 const pvw=m=>m.k==='t'?m.t:m.k==='p'?'🖼️ Photo':'🎤 Message vocal';
 function toast(t){const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2200)}
-function tone(q){if(!S.cfg.snd||PV)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();let t=ac.currentTime;q.forEach(([f,d])=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;g.gain.setValueAtTime(.2,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+d);t+=d})}catch(e){}}
-const sIn=()=>{tone([[1175,.1],[1568,.18]]);if(S.cfg.vib&&navigator.vibrate)try{navigator.vibrate(200)}catch(e){}},sOut=()=>tone([[520,.06]]);
+function tone(q,f){if(!f&&(!S.cfg.snd||PV))return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();let t=ac.currentTime;q.forEach(([f,d])=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;g.gain.setValueAtTime(.2,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+d);t+=d})}catch(e){}}
+const RS={'Cristal':[[1175,.1],[1568,.18]],'Doux':[[660,.15],[880,.25]],'Cloche':[[1320,.08],[1760,.08],[1320,.2]],'Bip court':[[1000,.08]],'Triple':[[880,.09],[1046,.09],[880,.09]],'Montant':[[523,.08],[659,.08],[784,.14]],'Aucun':[]},SS={'Discret':[[520,.06]],'Clic':[[700,.04]],'Pop':[[400,.05],[600,.06]],'Bip':[[900,.07]],'Aigu':[[1200,.05],[1500,.05]],'Aucun':[]};
+const sIn=()=>{tone(RS[S.cfg.si]||RS.Cristal);if(S.cfg.vib&&navigator.vibrate)try{navigator.vibrate(200)}catch(e){}},sOut=()=>tone(SS[S.cfg.so]||SS.Discret);
 function theme(){document.documentElement.dataset.t=S.cfg.th==='auto'?(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):S.cfg.th}
 /* navigation */
 function show(id){document.querySelectorAll('.pg').forEach(p=>p.classList.toggle('on',p.id===id));kbar();if(id==='kp'&&K)krender()}
@@ -301,10 +316,10 @@ function rc(){
 $('sq').oninput=()=>rc();
 $('b1').onclick=()=>{const s=$('sr');s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')$('sq').focus();else{$('sq').value='';rc()}};
 $('b2').onclick=()=>form(-1);$('fab').onclick=()=>mode==='c'?dpad():form(-1);
-$('b3').onclick=()=>menu('Menu',[['👤 Profil',()=>{first=false;rpf();go('pf')}],['⚙️ Réglages',()=>{rst();go('st')}],['⭐ Messages favoris',favList],['📦 Archivées',archList],...(window.LC&&LC.isOwner?[['🔑 Accès privés',()=>LC.admin()]]:[]),['📞 Simuler un appel inconnu',()=>setTimeout(()=>incoming('0349999999','Inconnu','',1),800)]]);
+$('b3').onclick=()=>menu('Menu',[['👤 Profil',()=>{first=false;rpf();go('pf')}],['⭐ Messages favoris',favList],['📦 Archivées',archList],...(window.LC&&LC.isOwner?[['🔑 Accès privés',()=>LC.admin()]]:[]),['⚙️ Réglages',()=>{rst();go('st')}]]);
 $('bb').onclick=e=>{const b=e.target.closest('[data-m]');if(b){mode=b.dataset.m;rc()}};
 function sim(i){const c=S.cts[i];S.chats[c.p]=S.chats[c.p]||[];S.chats[c.p].push(stamp({me:0,k:'t',t:'Salama ! (message simulé)'}));c.u=(c.u||0)+1;if(!c.mu)sIn();save();rc()}
-$('cl').onpointerdown=e=>{const r=e.target.closest('.row');if(!r||r.dataset.h!==undefined)return;lp=setTimeout(()=>{lp=-1;const i=+r.dataset.i,c=S.cts[i];menu(E(c.n),[[c.f?'☆ Retirer des favoris':'⭐ Favori',()=>{c.f=!c.f;save();rc()}],['📞 Simuler un appel entrant',()=>setTimeout(()=>incoming(c.p,c.n,c.av),800)],['🎥 Simuler un appel vidéo entrant',()=>setTimeout(()=>incoming(c.p,c.n,c.av,0,true),800)],['🔒 Simuler un message privé reçu',()=>privIn(i)],['🔒 Espace privé du contact : '+(c.pa===false?'désactivé':'activé'),()=>{c.pa=c.pa===false;save();toast('Espace privé du contact '+(c.pa===false?'désactivé':'activé'))}],['✏️ Modifier',()=>form(i)],[c.mu?'🔔 Réactiver le son':'🔕 Sourdine',()=>{c.mu=!c.mu;save();rc()}],['📦 Archiver',()=>{c.ar=1;save();rc();toast('Conversation archivée')}],['🗑️ Supprimer',()=>menu('Supprimer '+E(c.n)+' ?',[['Oui, supprimer',()=>{S.cts.splice(i,1);save();rc()}],['Annuler',()=>{}]])]])},600)};
+$('cl').onpointerdown=e=>{const r=e.target.closest('.row');if(!r||r.dataset.h!==undefined)return;lp=setTimeout(()=>{lp=-1;const i=+r.dataset.i,c=S.cts[i];menu(E(c.n),[[c.f?'☆ Retirer des favoris':'⭐ Favori',()=>{c.f=!c.f;save();rc()}],['👤 Voir le profil',()=>profView(i)],['✉️ Marquer comme non lu',()=>{c.u=c.u||1;save();rc();toast('Marqué comme non lu')}],['🔒 Espace privé du contact : '+(c.pa===false?'désactivé':'activé'),()=>{c.pa=c.pa===false;save();toast('Espace privé du contact '+(c.pa===false?'désactivé':'activé'))}],['✏️ Modifier',()=>form(i)],[c.mu?'🔔 Réactiver le son':'🔕 Sourdine',()=>{c.mu=!c.mu;save();rc()}],[c.b?'✅ Débloquer':'🚫 Bloquer',()=>{c.b=!c.b;save();rc();toast(c.b?'Contact bloqué':'Contact débloqué')}],['⋯ Plus…',()=>more(i)],['📦 Archiver',()=>{c.ar=1;save();rc();toast('Conversation archivée')}],['🗑️ Supprimer',()=>menu('Supprimer '+E(c.n)+' ?',[['Oui, supprimer',()=>{S.gone=S.gone||{};S.gone[S.cts[i].p]=1;S.cts.splice(i,1);save();rc()}],['Annuler',()=>{}]])]])},600)};
 ['onpointerup','onpointermove','onpointercancel'].forEach(h=>$('cl')[h]=()=>{if(lp>0)clearTimeout(lp)});
 $('cl').onclick=e=>{if(lp===-1){lp=0;return}const s=e.target.closest('[data-s]');if(s){sim(+s.dataset.s);return}const r=e.target.closest('.row');if(!r)return;const hh=r.dataset.h;if(hh!==undefined){const x=S.calls[+hh];recall(x.p,x.n,x.av,x.vid);return}const i=+r.dataset.i;if(mode==='m')openChat(i);else if(mode==='c')startCall(i);else startCall(i,true)};
 function form(i){
@@ -312,7 +327,7 @@ function form(i){
   modal(`<h3>${i>=0?'Modifier le contact':'Nouveau contact'}</h3><input id="fn" placeholder="Nom" value="${E(c.n)}"><input id="fp" type="email" placeholder="Adresse email du contact" autocapitalize="none" value="${E(c.p)}"><div class="avs" id="fa">${AV.map(a=>`<button class="ib${a===av?' cur':''}" data-a="${a}">${a}</button>`).join('')}</div><div class="er" id="fe"></div><button class="bt" id="fs">Enregistrer</button>`);
   $('fa').onclick=e=>{const b=e.target.closest('[data-a]');if(b){av=b.dataset.a;$('fa').querySelectorAll('.ib').forEach(x=>x.classList.toggle('cur',x===b))}};
   $('fs').onclick=async()=>{const n=$('fn').value.trim(),p=$('fp').value.trim().toLowerCase();if(!n||!p){$('fe').textContent='Nom et email obligatoires';return}if(S.cts.some((x,j)=>j!==i&&x.p===p)){$('fe').textContent='Cet email est déjà enregistré';return}if(window.LC){$('fe').textContent='Vérification…';let u;try{u=await LC.find(p)}catch(e){$('fe').textContent='Pas de connexion internet';return}if(u==='self'){$('fe').textContent="C'est votre propre adresse";return}if(!u){$('fe').textContent='Aucun compte Landja chat avec cet email';return}S.uidOf=S.uidOf||{};S.uidOf[p]=u.uid;$('fe').textContent=''}
-    if(i>=0){const o=S.cts[i];if(o.p!==p&&S.chats[o.p]){S.chats[p]=S.chats[o.p];delete S.chats[o.p]}Object.assign(o,{n,p,av})}else S.cts.push({n,p,av});save();cm();rc();window.LC&&LC.sync()};
+    if(i>=0){const o=S.cts[i];if(o.p!==p&&S.chats[o.p]){S.chats[p]=S.chats[o.p];delete S.chats[o.p]}Object.assign(o,{n,p,av})}else{S.cts.push({n,p,av});if(S.gone)delete S.gone[p]}save();cm();rc();window.LC&&LC.sync()};
 }
 /* discussion */
 const find=id=>(CS()[cur.p]||[]).find(m=>m.id===id);
@@ -358,7 +373,7 @@ function rb(){const r=$('rb');if(ed){r.style.display='block';r.innerHTML='✏️
 function ch(){const c=$('chp');c.style.display=pend.length?'block':'none';c.innerHTML=pend.map((p,i)=>`${p.k==='p'?'🖼️ Photo':'🎤 Vocal '+fd(p.du||0)} <button data-r="${i}">✕</button> `).join('')}
 $('chp').onclick=e=>{const b=e.target.closest('[data-r]');if(b){pend.splice(+b.dataset.r,1);ch();up()}};
 function up(){const h=!!$('inp').value.trim()||pend.length>0;$('snd').style.display=h?'flex':'none';$('mic').style.display=h?'none':'flex';const i=$('inp');i.style.height='48px';i.style.height=Math.max(48,Math.min(i.scrollHeight,120))+'px'}
-$('inp').oninput=()=>{if(!PV){S.dr[cur.p]=$('inp').value;save()}up()};
+$('inp').oninput=()=>{if(!PV){S.dr[cur.p]=$('inp').value;save()}up();window.LC&&LC.typ()};
 function send(){
   const t=$('inp').value.trim();if(!t&&!pend.length)return;
   if(PV&&cur.pa===false){toast("Ce contact n'a pas encore activé son espace privé");return}
@@ -386,9 +401,15 @@ addEventListener('offline',off);
 addEventListener('online',()=>{off();Object.values(S.chats).forEach(a=>a.forEach(m=>{if(m.ok===0)m.ok=1}));if(cur&&$('ch').classList.contains('on'))draw(1);setTimeout(()=>{Object.values(S.chats).forEach(a=>a.forEach(m=>{if(m.ok===1)m.ok=2}));if(cur&&$('ch').classList.contains('on'))draw(1)},1500)});
 off();
 /* réglages */
-function rst(){$('s1').checked=!!S.cfg.snd;$('s2').checked=!!S.cfg.vib;$('s3').value=S.cfg.th;$('s4').checked=!!S.cfg.ds;$('s7').checked=!!S.cfg.dnd;swr()}
+function fillS(id,o,v){$(id).innerHTML=Object.keys(o).map(k=>`<option value="${k}">${k}</option>`).join('');$(id).value=o[v]?v:Object.keys(o)[0]}
+function rst(){$('s10').checked=S.cfg.tyo!==0;fillS('s8',RS,S.cfg.si);fillS('s9',SS,S.cfg.so);$('s1').checked=!!S.cfg.snd;$('s2').checked=!!S.cfg.vib;$('s3').value=S.cfg.th;$('s4').checked=!!S.cfg.ds;$('s7').checked=!!S.cfg.dnd;swr()}
 $('s1').onchange=()=>{S.cfg.snd=+$('s1').checked;save()};
 $('s2').onchange=()=>{S.cfg.vib=+$('s2').checked;save()};
+$('s10').onchange=()=>{S.cfg.tyo=+$('s10').checked;save()};
+$('s8').onchange=()=>{S.cfg.si=$('s8').value;save();tone(RS[S.cfg.si],1)};
+$('s9').onchange=()=>{S.cfg.so=$('s9').value;save();tone(SS[S.cfg.so],1)};
+$('s8p').onclick=()=>tone(RS[$('s8').value],1);
+$('s9p').onclick=()=>tone(SS[$('s9').value],1);
 $('s3').onchange=()=>{S.cfg.th=$('s3').value;save();theme()};
 $('s4').onchange=()=>{S.cfg.ds=+$('s4').checked;save()};
 $('s5').onclick=()=>{first=false;rpf();go('pf')};
@@ -588,7 +609,13 @@ let PV=false,privIdx=0;let PCFG={salt:'916b26381da034e48d6d1f4268b52f92',hash:'f
 async function chk(c){try{const h=x=>Uint8Array.from(x.match(/../g).map(y=>parseInt(y,16)));const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(c),'PBKDF2',false,['deriveBits']);const b=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:h(PCFG.salt),iterations:PCFG.it},k,256);return [...new Uint8Array(b)].map(y=>y.toString(16).padStart(2,'0')).join('')===PCFG.hash}catch(e){return false}}
 S.pc=S.pc||{};
 const CS=()=>PV?S.pc:S.chats;
-function hdr(){$('ca').innerHTML=E(cur.av)+`<i class="d${cur.on?' on':''}"></i>`;$('cn').innerHTML=E(cur.n)+(PV?' '+si('lock',14):'')+`<br><small style="font-weight:400" id="cs">${PV?'Espace privé':(cur.on?'en ligne':'hors ligne')}</small>`;$('clk').style.display=PV?'none':'flex';$('clk').classList.remove('np')}
+const TY={};let tyHdr=0,tyT=0;
+function tyShow(fh){const o=cur&&S.uidOf&&S.uidOf[cur.p],y=o&&TY[o],n=Date.now(),vis=!!($('ch').classList.contains('on')&&y&&(PV?n-y.pn<4500:n-y.tn<4500));
+ $('tyb').style.display=vis?'block':'none';const cs=$('cs');
+ if(vis&&!PV&&cs){cs.innerHTML='écrit<span class="td"><i>.</i><i>.</i><i>.</i></span>';tyHdr=1}
+ else if(!fh&&tyHdr&&!vis){tyHdr=0;hdr()}
+ if(vis){const m=$('ms');if(m.scrollHeight-m.scrollTop-m.clientHeight<160)m.scrollTop=m.scrollHeight;clearTimeout(tyT);tyT=setTimeout(()=>tyShow(),4600-(n-(PV?y.pn:y.tn)))}}
+function hdr(){$('ms').style.background=(!PV&&cur&&cur.bg)||'';$('tyb').style.background=$('ms').style.background;$('ca').innerHTML=E(cur.av)+`<i class="d${cur.on?' on':''}"></i>`;$('cn').innerHTML=E(cur.n)+(PV?' '+si('lock',14):'')+`<br><small style="font-weight:400" id="cs">${PV?'Espace privé':(cur.on?'en ligne':'hors ligne')}</small>`;$('clk').style.display=PV?'none':'flex';$('clk').classList.remove('np');tyShow(1)}
 function codeDlg(){
   modal(`<h3>Code de l'espace privé</h3><div class="cells" id="cel">${'<i></i>'.repeat(8)}</div><input id="cin" type="tel" inputmode="numeric" maxlength="8" autocomplete="off" class="cin" aria-label="Code à 8 chiffres"><div class="er" id="cer" style="text-align:center"></div>`);
   const inp=$('cin'),cells=[...$('cel').children],paint=()=>cells.forEach((c,k)=>c.className=k<inp.value.length?'f':'');
@@ -610,6 +637,13 @@ function archList(){const a=S.cts.map((c,i)=>({c,i})).filter(x=>x.c.ar);if(!a.le
 function sendPos(){if(!navigator.geolocation){toast('Position indisponible');return}toast('Recherche de la position…');
   navigator.geolocation.getCurrentPosition(p=>{$('inp').value='📍 Ma position : https://maps.google.com/?q='+p.coords.latitude.toFixed(5)+','+p.coords.longitude.toFixed(5);send()},()=>toast('Position refusée ou indisponible'))}
 function sendCt(){menu('Envoyer quel contact ?',S.cts.map(c=>[E(c.av)+' '+E(c.n),()=>{$('inp').value='👤 '+c.n+' · '+c.p;send()}]))}
+function profView(i){const c=S.cts[i];modal(`<div style="text-align:center"><div class="ct" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small></div><button class="mi" id="pvx">Fermer</button>`);$('pvx').onclick=cm}
+function copyT(t){if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>toast('Copié ✓'),()=>toast('Copie impossible'));else toast('Copie impossible')}
+function shareC(c){const t='👤 '+c.n+' · '+c.p;if(navigator.share)navigator.share({text:t}).catch(()=>{});else copyT(t)}
+const BGS=[['Par défaut',''],['Vert doux','#2b8a3e33'],['Bleu doux','#1971c233'],['Rose doux','#c2255c33'],['Violet doux','#6741d933'],['Jaune doux','#f0a50040'],['Gris','#49505733']];
+function bgMenu(i){const c=S.cts[i];menu('Couleur de la conversation',BGS.map(b=>[(b[1]?'<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:'+b[1]+';border:1px solid #888;margin-right:8px"></span>':'')+b[0],()=>{c.bg=b[1];save();toast('Couleur enregistrée')}]))}
+function clearChat(i){const c=S.cts[i];S.del=S.del||{};(S.chats[c.p]||[]).forEach(m=>{if(m.fid)S.del[m.fid]=1});S.chats[c.p]=[];c.u=0;save();rc();toast('Conversation vidée')}
+function more(i){const c=S.cts[i];menu(E(c.n)+' · Plus',[["📋 Copier l'adresse email",()=>copyT(c.p)],['📤 Partager ce contact',()=>shareC(c)],['🎨 Couleur de la conversation',()=>bgMenu(i)],['🧹 Vider la conversation',()=>menu('Vider la conversation avec '+E(c.n)+' ?',[['Oui, vider (chez moi seulement)',()=>clearChat(i)],['Annuler',()=>{}]])]])}
 function fiche(){const c=cur,i=S.cts.indexOf(c);
   modal(`<div style="text-align:center"><div class="ct" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small></div><button class="mi" id="f1">📞 Appeler</button><button class="mi" id="f2">🎥 Vidéo</button><button class="mi" id="f3">${c.b?'✅ Débloquer':'🚫 Bloquer'}</button><button class="mi" id="f4">${c.mu?'🔔 Réactiver le son':'🔕 Sourdine'}</button><button class="mi" id="f5">📦 Archiver</button>`);
   $('f1').onclick=()=>{cm();startCall(i)};$('f2').onclick=()=>{cm();startCall(i,true)};
@@ -626,7 +660,7 @@ const CFG={apiKey:"AIzaSyDH-FguSfe3eogY4tBLZcEbRvT5zM8Qgv4",authDomain:"landja-c
 const B='https://www.gstatic.com/firebasejs/13.0.0/';
 const st=document.createElement('style');st.textContent='#lcov{position:fixed;inset:0;z-index:99999;background:linear-gradient(160deg,#f76707,#d9480f);display:flex;align-items:center;justify-content:center;padding:20px;font:16px system-ui,sans-serif}#lcov .cd{background:#fff;color:#1f2328;border-radius:20px;padding:20px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:10px}#lcov h2{margin:0;text-align:center;color:#d9480f}#lcov input{font:inherit;padding:13px;border:1px solid #d0d5dd;border-radius:12px;width:100%;box-sizing:border-box}#lcov button{font:inherit;font-weight:800;border:0;border-radius:12px;padding:14px;background:#d9480f;color:#fff}#lcov .t{display:flex;gap:6px}#lcov .t button{flex:1;background:#f1f3f5;color:#1f2328;padding:10px}#lcov .t button.on{background:#d9480f;color:#fff}#lcov .pw{position:relative}#lcov .pw input{padding-right:52px}#lcov .pw button{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;color:#555;padding:8px 10px;border-radius:10px;line-height:0}#lcov .pw svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}#lcov button.lk{background:none;color:#d9480f;padding:6px;font-weight:600;text-decoration:underline}#lcer{color:#c92a2a;min-height:1.2em;font-size:.9rem;text-align:center}';document.head.appendChild(st);
 const ov=document.createElement('div');ov.id='lcov';
-ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 10</small></div>';
+ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 13</small></div>';
 document.body.appendChild(ov);
 const $$=i=>document.getElementById(i);addEventListener('error',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+e.message}});addEventListener('unhandledrejection',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+((e.reason&&(e.reason.code||e.reason.message))||e.reason)}});let reg=0,FS,AUTH,db,au,me,pname='',subs={},hb=0;
 const setM=r=>{reg=r;$$('lct1').className=r?'':'on';$$('lct2').className=r?'on':'';$$('lcn').style.display=r?'block':'none';$$('lcgo').textContent=r?'Créer mon compte':'Se connecter';$$('lcfg').style.display=r?'none':'block';$$('lcer').textContent=''};
@@ -648,16 +682,19 @@ function sub(ct){const o=S.uidOf&&S.uidOf[ct.p];if(!o||subs[o])return;subs[o]=[]
   const u1=FS.onSnapshot(q,sn=>{S.chats[ct.p]=S.chats[ct.p]||[];S.pc[ct.p]=S.pc[ct.p]||[];let fresh=0;
    sn.docChanges().forEach(ch=>{if(ch.type!=='added')return;const d=ch.doc,x=d.data(),a=x.pv?S.pc[ct.p]:S.chats[ct.p];if((S.del||{})[d.id]||(x.t==null&&!x.d)||a.some(m=>m.fid===d.id))return;const mine=x.from===me.uid,dt=new Date(x.ts);
     a.push({me:mine?1:0,k:x.k||'t',t:x.t,u:x.d,du:x.du,fid:d.id,ok:2,h:String(dt.getHours()).padStart(2,'0')+':'+String(dt.getMinutes()).padStart(2,'0'),d:dt.toDateString(),ts:x.ts,id:++uid});
-    if(!mine){if(x.pv){if(PV&&open()&&cur.p===ct.p)ct.plr=Date.now();else if(x.ts>(ct.plr||0))ct.pu=1}else if(open()&&!PV&&cur.p===ct.p)ct.lr=Date.now();else if(x.ts>(ct.lr||0))ct.u=(ct.u||0)+1;if(ready&&!x.pv)fresh=1}});
-   S.chats[ct.p].sort((p,q)=>p.ts-q.ts);S.pc[ct.p].sort((p,q)=>p.ts-q.ts);ready=1;save();rc();if(open()&&cur.p===ct.p)draw(1);if(fresh&&!ct.mu)sIn()},e=>console.log(e.code));
+    if(!mine){{const y=TY[o]||(TY[o]={tn:0,pn:0});if(x.pv)y.pn=0;else y.tn=0}if(ready&&open()&&cur.p===ct.p&&!!x.pv===PV)newId=uid;if(x.pv){if(PV&&open()&&cur.p===ct.p)ct.plr=Date.now();else if(x.ts>(ct.plr||0))ct.pu=1}else if(open()&&!PV&&cur.p===ct.p)ct.lr=Date.now();else if(x.ts>(ct.lr||0))ct.u=(ct.u||0)+1;if(ready&&!x.pv)fresh=1}});
+   S.chats[ct.p].sort((p,q)=>p.ts-q.ts);S.pc[ct.p].sort((p,q)=>p.ts-q.ts);ready=1;save();rc();if(open()&&cur.p===ct.p){draw(1);tyShow()}if(fresh&&!ct.mu)sIn()},e=>console.log(e.code));
   const u2=FS.onSnapshot(FS.doc(db,'users',o),d=>{const x=d.data();ct.on=x&&Date.now()-x.lastSeen<75000?1:0;ct.pa=!(x&&x.pa===false);if(open()&&cur.p===ct.p)hdr();rc()});
-  subs[o]=[u1,u2]}).catch(e=>{delete subs[o];console.log(e.code)})}
+  const u3=FS.onSnapshot(FS.doc(db,'chats',cid(o)),d=>{const x=d.data()||{},y=TY[o]=TY[o]||{tn:0,pn:0},tv=x['t_'+o]||0,pw=x['p_'+o]||0;if(y.t===undefined){y.t=tv;y.p=pw}else{if(tv&&tv!==y.t){y.t=tv;y.tn=Date.now()}if(pw&&pw!==y.p){y.p=pw;y.pn=Date.now()}}if(cur&&cur.p===ct.p)tyShow()},e=>console.log(e.code));
+  subs[o]=[u1,u2,u3]}).catch(e=>{delete subs[o];console.log(e.code)})}
 const rd=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b)});
 const shrink=(d,mx,q)=>new Promise(r=>{const im=new Image();im.onload=()=>{const k=Math.min(1,mx/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',q))};im.onerror=()=>r(d);im.src=d});
 async function pack(m){try{let d=await rd(await (await fetch(m.u)).blob());if(m.k==='p'&&d.length>650000)d=await shrink(d,900,.55);if(m.k==='p'&&d.length>650000)d=await shrink(d,640,.45);return d.length>900000?null:d}catch(e){return null}}
+let lastTy=0;
 window.LC={get uid(){return me&&me.uid},
+ typ(){if(!me||!cur||S.cfg.tyo===0)return;const o=S.uidOf&&S.uidOf[cur.p];if(!o||!$('inp').value.trim())return;if(PV&&cur.pa===false)return;const n=Date.now();if(n-lastTy<3000)return;lastTy=n;FS.setDoc(FS.doc(db,'chats',cid(o)),{[(PV?'p_':'t_')+me.uid]:n},{merge:true}).catch(()=>{})},
  async find(e){const sn=await FS.getDocs(FS.query(FS.collection(db,'users'),FS.where('emailLower','==',e),FS.limit(1)));if(sn.empty)return null;const d=sn.docs[0];return d.id===me.uid?'self':{uid:d.id}},
- sync(){S.cts.forEach(sub)},
+ sync(){S.cts.forEach(async ct=>{if(S.uidOf&&S.uidOf[ct.p]){sub(ct);return}try{const u=await LC.find(ct.p);if(u&&u!=='self'){S.uidOf=S.uidOf||{};S.uidOf[ct.p]=u.uid;sub(ct)}}catch(e){}})},
  async out(p,m,pv){const o=S.uidOf&&S.uidOf[p];if(!o){toast("Cette personne n'a pas de compte");return}const r=FS.doc(FS.collection(db,'chats',cid(o),'messages'));m.fid=r.id;save();
   const body={from:me.uid,ts:m.ts,pv:pv?1:0};
   if(m.k==='t')body.t=m.t;else{const d=await pack(m);if(!d){m.ok=0;toast('Fichier trop lourd pour être envoyé');save();if(open())draw(1);return}body.k=m.k;body.d=d;if(m.du)body.du=m.du}
@@ -667,17 +704,21 @@ PCFG=null;
 const hx=a=>[...new Uint8Array(a)].map(y=>y.toString(16).padStart(2,'0')).join('');
 async function mk(code){const salt=crypto.getRandomValues(new Uint8Array(16)),k=await crypto.subtle.importKey('raw',new TextEncoder().encode(code),'PBKDF2',false,['deriveBits']),b=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations:310000},k,256);return{salt:hx(salt),hash:hx(b),it:310000}}
 function makeCode(tc){let first='',vt=!!tc;
- modal(`<h3 id="cti">${tc?'Entrez le code provisoire':'Créez votre code privé'}</h3><p style="margin:0 0 8px;text-align:center;font-size:.85rem;opacity:.7">8 chiffres. S'il est oublié, il ne pourra pas être récupéré.</p><div class="cells" id="cel">${'<i></i>'.repeat(8)}</div><input id="cin" type="tel" inputmode="numeric" maxlength="8" autocomplete="off" class="cin" aria-label="Code à 8 chiffres"><div class="er" id="cer" style="text-align:center"></div>`);
- const inp=$('cin'),cells=[...$('cel').children],paint=()=>cells.forEach((c,k)=>c.className=k<inp.value.length?'f':'');
+ modal(`<div style="text-align:center"><span class="stp" id="cst"></span></div><h3 id="cti" style="text-align:center;font-size:1.5rem;margin:10px 0 2px"></h3><p id="csb" style="margin:0 0 8px;text-align:center;font-size:.95rem"></p><div class="cells" id="cel">${'<i></i>'.repeat(8)}</div><input id="cin" type="tel" inputmode="numeric" maxlength="8" autocomplete="off" class="cin" aria-label="Code à 8 chiffres"><button type="button" class="cey" id="cey">Afficher les chiffres</button><div class="er" id="cer" style="text-align:center"></div><p style="margin:4px 0 0;text-align:center;font-size:.8rem;opacity:.7">8 chiffres. S'il est oublié, il ne pourra pas être récupéré.</p>`);
+ const TT=tc?3:2,STP={p:[1,'Code PROVISOIRE','Tapez le code reçu dans le message'],n:[tc?2:1,'NOUVEAU code','Choisissez le code que vous garderez'],c:[tc?3:2,'CONFIRMATION','Retapez le même nouveau code']};
+ const lab=k=>{const x=STP[k];$('cst').textContent='ÉTAPE '+x[0]+' sur '+TT;$('cti').textContent=x[1];$('csb').textContent=x[2]};lab(tc?'p':'n');
+ const inp=$('cin'),cells=[...$('cel').children];let show=0;
+ const paint=()=>cells.forEach((c,k)=>{const f=k<inp.value.length;c.className=f?'f':'';c.textContent=(show&&f)?inp.value[k]:''});
+ $('cey').onclick=()=>{show=show?0:1;$('cey').textContent=show?'Masquer les chiffres':'Afficher les chiffres';paint();inp.focus()};
  $('cel').onclick=()=>inp.focus();inp.focus();
  inp.oninput=async()=>{inp.value=inp.value.replace(/\D/g,'');$('cer').textContent='';paint();if(inp.value.length<8)return;const v=inp.value;
-  if(vt){inp.disabled=true;const ok=await vf(v,tc).catch(()=>false);inp.disabled=false;inp.value='';paint();if(!ok){$('cer').textContent='Code provisoire incorrect';inp.focus();return}vt=false;$('cti').textContent='Créez votre code privé';inp.focus();return}
-  if(!first){first=v;inp.value='';paint();$('cti').textContent='Confirmez votre code';return}
-  if(v!==first){first='';inp.value='';paint();$('cti').textContent='Créez votre code privé';$('cer').textContent='Les deux codes ne sont pas identiques';return}
+  if(vt){inp.disabled=true;const ok=await vf(v,tc).catch(()=>false);inp.disabled=false;inp.value='';paint();if(!ok){$('cer').textContent='Code provisoire incorrect';inp.focus();return}vt=false;lab('n');inp.focus();return}
+  if(!first){first=v;inp.value='';paint();lab('c');return}
+  if(v!==first){first='';inp.value='';paint();lab('n');$('cer').textContent='Les deux codes ne sont pas identiques';return}
   inp.disabled=true;
   try{const ref=FS.doc(db,'users',me.uid,'private','cfg'),g=await FS.getDoc(ref);if(g.exists()){PCFG=g.data();S.pcfg=PCFG;save();cm();toast('Code déjà créé : entrez-le');return}
    const cfg=await mk(v);await FS.setDoc(ref,cfg);PCFG=cfg;S.pcfg=cfg;save();cm();toast('Code créé ✓');enterPriv()}
-  catch(e){inp.disabled=false;inp.value='';first='';paint();$('cti').textContent='Créez votre code privé';$('cer').textContent='Connexion internet nécessaire'}}}
+  catch(e){inp.disabled=false;inp.value='';first='';paint();lab('n');$('cer').textContent='Connexion internet nécessaire'}}}
 const OWNER='eldianahanjatiana@gmail.com',DUMMY={salt:'0'.repeat(32),hash:'f'.repeat(64),it:310000};let AL=null;
 async function vf(code,cfg){const sl=new Uint8Array(cfg.salt.match(/../g).map(x=>parseInt(x,16))),k=await crypto.subtle.importKey('raw',new TextEncoder().encode(code),'PBKDF2',false,['deriveBits']),b=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:sl,iterations:cfg.it||310000},k,256);return hx(b)===cfg.hash}
 $('clk').onclick=async()=>{try{const[a,c]=await Promise.all([FS.getDoc(FS.doc(db,'privateAllowed',me.uid)),FS.getDoc(FS.doc(db,'users',me.uid,'private','cfg'))]);AL=a.exists()?a.data():null;if(c.exists()){PCFG=c.data();S.pcfg=PCFG}else if(AL)PCFG=null}catch(e){AL=AL||(S.pcfg?{}:null)}
@@ -697,16 +738,40 @@ async function admin(){cm();
   $('adc').onclick=async()=>{$('adc').disabled=true;try{const cfg=await mk(tmp);await FS.setDoc(FS.doc(db,'privateAllowed',u.uid),{email:em,salt:cfg.salt,hash:cfg.hash,it:cfg.it,tmp:true,ts:Date.now()});await FS.setDoc(FS.doc(db,'chats',cid(u.uid)),{members:[me.uid,u.uid]},{merge:true});await FS.setDoc(FS.doc(FS.collection(db,'chats',cid(u.uid),'messages')),{from:me.uid,t:txt,ts:Date.now()});cm();toast('Autorisation envoyée ✓')}catch(e){$('adc').disabled=false;toast("Échec de l'envoi")}}}}
 LC.admin=admin;Object.defineProperty(LC,'isOwner',{get(){return !!me&&me.email.toLowerCase()===OWNER}});
 const _ep=enterPriv;enterPriv=function(){cur.plr=Date.now();return _ep()};const _oc=openChat;openChat=function(i){S.cts[i].lr=Date.now();return _oc(i)};
-async function start(u){me=u;ov.style.display='none';
- if(S.acct&&S.acct!==u.uid)Object.assign(S,{cts:[],chats:{},pc:{},uidOf:{},dr:{},del:{},pcfg:null});
- S.acct=u.uid;S.uidOf=S.uidOf||{};S.del=S.del||{};S.cts=S.cts.filter(x=>!/^034000000\d$/.test(x.p));
+let cOK=0,cT=0,CK='';
+const CSTD=u=>FS.doc(db,'users',u.uid,'store','contacts');
+const cstrip=c=>({n:c.n||c.p,p:c.p,av:c.av||'🙂',f:c.f?1:0,mu:c.mu?1:0,b:c.b?1:0,ar:c.ar?1:0,pa:c.pa===false?false:true,bg:c.bg||''});
+function cloudSave(){if(!cOK||!me)return;clearTimeout(cT);cT=setTimeout(()=>{if(!cOK||!me)return;const data={cts:S.cts.map(cstrip),uo:Object.entries(S.uidOf||{}).map(([p,u])=>({p,u})),gone:Object.keys(S.gone||{}),del:Object.keys(S.del||{}).slice(-3000)},k=JSON.stringify(data);if(k===CK)return;FS.setDoc(CSTD(me),{...data,upd:Date.now()}).then(()=>{CK=k}).catch(e=>console.log(e.code))},1500)}
+window.cloudSave=cloudSave;
+async function recover(u){
+ const q=await FS.getDocs(FS.query(FS.collection(db,'chats'),FS.where('members','array-contains',u.uid)));
+ for(const d of q.docs){const o=(d.data().members||[]).find(x=>x!==u.uid);if(!o||Object.values(S.uidOf||{}).includes(o))continue;
+  try{const us=await FS.getDoc(FS.doc(db,'users',o));if(!us.exists())continue;const x=us.data(),p=(x.emailLower||x.email||'').toLowerCase();
+   if(!p||(S.gone||{})[p]||S.cts.some(c=>c.p===p))continue;S.cts.push({n:x.name||p,p,av:x.av||'🙂',on:0});S.uidOf[p]=o}catch(e){}}}
+async function cloudLoad(u){
+ cOK=0;
+ try{
+  const sn=await FS.getDoc(CSTD(u));
+  if(sn.exists()){const d=sn.data();
+   (d.gone||[]).forEach(p=>{S.gone[p]=S.gone[p]||1});
+   (d.uo||[]).forEach(x=>{if(!S.uidOf[x.p])S.uidOf[x.p]=x.u});
+   (d.del||[]).forEach(k=>{S.del[k]=1});
+   (d.cts||[]).forEach(c=>{if(!S.cts.some(x=>x.p===c.p))S.cts.push({on:0,...c})})}
+  await recover(u);
+  CK='';cOK=1;
+ }catch(e){console.log('cloud',e.code||e)}
+ save();rc();
+}
+async function start(u){me=u;ov.style.display='none';cOK=0;
+ if(S.acct&&S.acct!==u.uid)Object.assign(S,{cts:[],chats:{},pc:{},uidOf:{},dr:{},del:{},gone:{},pcfg:null});
+ S.acct=u.uid;S.uidOf=S.uidOf||{};S.del=S.del||{};S.gone=S.gone||{};S.cts=S.cts.filter(x=>!/^034000000\d$/.test(x.p));
  const nm=pname||u.displayName;if(nm&&!S.me.n)S.me.n=nm;save();rc();$$('lcem').textContent='Compte : '+u.email;
  const prof=()=>FS.setDoc(FS.doc(db,'users',u.uid),{name:S.me.n||u.email,email:u.email,emailLower:u.email.toLowerCase(),av:S.me.av,lastSeen:Date.now(),pa:true},{merge:true}).catch(e=>console.log(e.code));
  try{const sn=await FS.getDoc(FS.doc(db,'users',u.uid,'private','cfg'));PCFG=sn.exists()?sn.data():null;S.pcfg=PCFG}catch(e){PCFG=S.pcfg||null}try{const al=await FS.getDoc(FS.doc(db,'privateAllowed',u.uid));AL=al.exists()?al.data():null}catch(e){}
  if(u.email.toLowerCase()===OWNER){AL=AL||{};try{await FS.setDoc(FS.doc(db,'privateAllowed',u.uid),{email:u.email.toLowerCase(),ts:Date.now()},{merge:true})}catch(e){}}
  if(!AL)PCFG=DUMMY;
- await prof();clearInterval(hb);hb=setInterval(()=>{if(!document.hidden)prof()},30000);LC.sync()}
-function stop(){PCFG=null;clearInterval(hb);Object.values(subs).forEach(a=>a.forEach(f=>f&&f()));subs={};me=null;ov.style.display='flex'}
+ await prof();clearInterval(hb);hb=setInterval(()=>{if(!document.hidden)prof()},30000);await cloudLoad(u);LC.sync()}
+function stop(){cOK=0;PCFG=null;clearInterval(hb);Object.values(subs).forEach(a=>a.forEach(f=>f&&f()));subs={};me=null;ov.style.display='flex'}
 $('lcout').onclick=()=>{AUTH.signOut(au)};
 (async()=>{try{const[a,b,c]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-firestore.js')]);
  const app=a.initializeApp(CFG);AUTH=b;FS=c;au=b.getAuth(app);db=c.getFirestore(app);
