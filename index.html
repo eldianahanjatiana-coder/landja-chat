@@ -51,7 +51,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
 .bb button{flex:1;padding:8px;opacity:.7;display:flex;flex-direction:column;align-items:center;font-size:.75rem;position:relative}
 .bb .on{opacity:1;font-weight:800}
 .bb .on svg{transform:scale(1.2)}
-#ms{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:color-mix(in srgb,var(--or) 6%,var(--bg))}
+#ms{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--cd)}
 .mr{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
 .mr.o{align-items:flex-start}
 .mr.g{margin-top:-5px}
@@ -161,7 +161,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
 #clk{position:relative}
 #clk.np::after{content:'';position:absolute;top:7px;right:7px;width:9px;height:9px;border-radius:50%;background:#ffd43b}
 #ch.pv .tb{background:#343a40}
-#ch.pv #ms{background:color-mix(in srgb,#000 14%,var(--bg))}
+#ch.pv #ms{background:linear-gradient(#00000024,#00000024),var(--bg)}
 #ch.pv #cbk{opacity:.5}
 #mb{position:relative}
 .cells{display:flex;gap:6px;justify-content:center;margin:8px 0}
@@ -178,10 +178,10 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
 @keyframes inR{from{opacity:0;transform:translateX(18px) scale(.94)}60%{transform:translateX(-2px) scale(1.01)}to{opacity:1;transform:none}}
 .mr.nw{animation:none}.mr.nw .b{animation:inR .42s cubic-bezier(.2,.8,.2,1)}.mr.o.nw .b{animation:inL .38s cubic-bezier(.2,.8,.2,1)}
 @keyframes bn{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
-#tyb{display:none;padding:0 12px 8px;background:color-mix(in srgb,var(--or) 6%,var(--bg))}
+#tyb{display:none;padding:0 12px 8px;background:var(--cd)}
 #tyb .b{display:inline-block;animation:inL .3s cubic-bezier(.2,.8,.2,1)}
 .dots{display:flex;gap:5px;padding:6px 2px}.dots i{width:8px;height:8px;border-radius:50%;background:var(--mu);animation:bn 1.2s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
-#ch.pv #tyb{background:color-mix(in srgb,#000 14%,var(--bg))}#ch.pv #tyb .b{opacity:.55;box-shadow:none;padding:4px 8px}#ch.pv .dots i{width:5px;height:5px;animation-duration:1.8s}
+#ch.pv #tyb{background:linear-gradient(#00000024,#00000024),var(--bg)}#ch.pv #tyb .b{opacity:.55;box-shadow:none;padding:4px 8px}#ch.pv .dots i{width:5px;height:5px;animation-duration:1.8s}
 
 #bb,#cc,#cv{display:none!important}#fab{bottom:calc(24px + env(safe-area-inset-bottom))}
 .b{max-width:min(82%,calc(100vw - 70px))}
@@ -194,18 +194,18 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
 
 /* Style chaleureux */
 :root{--bg:#fffaf6;--cd:#fdeee2;--bd:#f3dccb;--ot:#ffe8d6;--tx:#3b2416;--mu:#8a6a55}
-.tb{background:linear-gradient(135deg,color-mix(in srgb,var(--or) 78%,#fff),var(--or));box-shadow:0 3px 10px color-mix(in srgb,var(--or) 35%,transparent)}
+.tb{background:linear-gradient(135deg,#ffffff38,#ffffff00),var(--or);box-shadow:0 3px 10px #00000040}
 :root:not([data-t=dark]) .row{background:#fff}
-.row{border-bottom-color:color-mix(in srgb,var(--or) 12%,var(--bd))}
+.row{border-bottom-color:var(--bd)}
 .nm{font-weight:700}
-.ct{background:color-mix(in srgb,var(--or) 10%,var(--bg));box-shadow:0 0 0 2px color-mix(in srgb,var(--or) 22%,transparent)}
+.ct{background:var(--ot);box-shadow:0 0 0 2px #00000012}
 .bg{background:var(--or)}
-#fab{background:linear-gradient(135deg,color-mix(in srgb,var(--or) 78%,#fff),var(--or));box-shadow:0 6px 16px color-mix(in srgb,var(--or) 40%,transparent)}
-.b{border-radius:22px 22px 6px 22px;background:linear-gradient(135deg,color-mix(in srgb,var(--or) 82%,#fff),var(--or));box-shadow:0 2px 6px color-mix(in srgb,var(--or) 22%,transparent)}
-.b.o{border-radius:22px 22px 22px 6px;background:var(--ot);box-shadow:0 1px 4px color-mix(in srgb,var(--or) 14%,transparent)}
+#fab{background:linear-gradient(135deg,#ffffff38,#ffffff00),var(--or);box-shadow:0 6px 16px #00000050}
+.b{border-radius:22px 22px 6px 22px;background:linear-gradient(135deg,#ffffff38,#ffffff00),var(--or);box-shadow:0 2px 6px #00000030}
+.b.o{border-radius:22px 22px 22px 6px;background:var(--ot);box-shadow:0 1px 4px #00000024}
 :root:not([data-t=dark]) .cb{background:#fff}
 .cb textarea{border-color:var(--bd)}
-.rd.s{background:linear-gradient(135deg,color-mix(in srgb,var(--or) 78%,#fff),var(--or))}
+.rd.s{background:linear-gradient(135deg,#ffffff38,#ffffff00),var(--or)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head>
 <body>
@@ -218,7 +218,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
   <div class="f3">Discutez, appelez, partagez</div>
   <div class="bar"><i></i></div><div id="lm">Chargement des contacts…</div>
   <button class="bt" id="go">Commencer</button>
-  <div class="ver">Version 17<br>Développée par RAFARALAHY Herimanintsoa Lanjatiana</div>
+  <div class="ver">Version 18<br>Développée par RAFARALAHY Herimanintsoa Lanjatiana</div>
 </section>
 
 <section class="pg" id="pf">
@@ -268,7 +268,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
     <div class="opt" style="flex-direction:column;align-items:flex-start"><span>Couleur du thème</span><div class="avs" id="s6"></div></div>
     <label class="opt" style="display:none"><span>Ne pas déranger (appels entrants)</span><input type="checkbox" id="s7"></label>
     <div class="opt"><span id="lcem"></span></div><button class="bt" id="s5">Mon profil</button><button class="bt" id="lcout" style="background:var(--cd);color:var(--tx)">Se déconnecter</button>
-    <div class="opt" style="flex-direction:column;align-items:flex-start;gap:4px"><b>Landja Chat</b><span>Version 17</span><span>Développée par RAFARALAHY Herimanintsoa Lanjatiana</span></div>
+    <div class="opt" style="flex-direction:column;align-items:flex-start;gap:4px"><b>Landja Chat</b><span>Version 18</span><span>Développée par RAFARALAHY Herimanintsoa Lanjatiana</span></div>
   </div>
 </section>
 
@@ -692,7 +692,7 @@ const CFG={apiKey:"AIzaSyDH-FguSfe3eogY4tBLZcEbRvT5zM8Qgv4",authDomain:"landja-c
 const B='https://www.gstatic.com/firebasejs/13.0.0/';
 const st=document.createElement('style');st.textContent='#lcov{position:fixed;inset:0;z-index:99999;background:linear-gradient(160deg,#f76707,#d9480f);display:flex;align-items:center;justify-content:center;padding:20px;font:16px system-ui,sans-serif}#lcov .cd{background:#fff;color:#1f2328;border-radius:20px;padding:20px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:10px}#lcov h2{margin:0;text-align:center;color:#d9480f}#lcov input{font:inherit;padding:13px;border:1px solid #d0d5dd;border-radius:12px;width:100%;box-sizing:border-box}#lcov button{font:inherit;font-weight:800;border:0;border-radius:12px;padding:14px;background:#d9480f;color:#fff}#lcov .t{display:flex;gap:6px}#lcov .t button{flex:1;background:#f1f3f5;color:#1f2328;padding:10px}#lcov .t button.on{background:#d9480f;color:#fff}#lcov .pw{position:relative}#lcov .pw input{padding-right:52px}#lcov .pw button{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;color:#555;padding:8px 10px;border-radius:10px;line-height:0}#lcov .pw svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}#lcov button.lk{background:none;color:#d9480f;padding:6px;font-weight:600;text-decoration:underline}#lcer{color:#c92a2a;min-height:1.2em;font-size:.9rem;text-align:center}';document.head.appendChild(st);
 const ov=document.createElement('div');ov.id='lcov';
-ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 17</small></div>';
+ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 18</small></div>';
 document.body.appendChild(ov);
 const $$=i=>document.getElementById(i);addEventListener('error',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+e.message}});addEventListener('unhandledrejection',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+((e.reason&&(e.reason.code||e.reason.message))||e.reason)}});let reg=0,FS,AUTH,db,au,me,pname='',subs={},hb=0;
 const setM=r=>{reg=r;$$('lct1').className=r?'':'on';$$('lct2').className=r?'on':'';$$('lcn').style.display=r?'block':'none';$$('lcgo').textContent=r?'Créer mon compte':'Se connecter';$$('lcfg').style.display=r?'none':'block';$$('lcer').textContent=''};
