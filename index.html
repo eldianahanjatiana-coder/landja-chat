@@ -218,7 +218,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
   <div class="f3">Discutez, appelez, partagez</div>
   <div class="bar"><i></i></div><div id="lm">Chargement des contacts…</div>
   <button class="bt" id="go">Commencer</button>
-  <div class="ver">Version 20<br>Développée par RAFARALAHY Herimanintsoa Lanjatiana</div>
+  <div class="ver">Version 21<br>Développée par RAFARALAHY Herimanintsoa Lanjatiana</div>
 </section>
 
 <section class="pg" id="pf">
@@ -268,7 +268,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
     <div class="opt" style="flex-direction:column;align-items:flex-start"><span>Couleur du thème</span><div class="avs" id="s6"></div></div>
     <label class="opt" style="display:none"><span>Ne pas déranger (appels entrants)</span><input type="checkbox" id="s7"></label>
     <div class="opt"><span id="lcem"></span></div><button class="bt" id="s5">Mon profil</button><button class="bt" id="lcout" style="background:var(--cd);color:var(--tx)">Se déconnecter</button>
-    <div class="opt" style="flex-direction:column;align-items:flex-start;gap:4px"><b>PaPote</b><span>Version 20</span><span>Développée par RAFARALAHY Herimanintsoa Lanjatiana</span></div>
+    <div class="opt" style="flex-direction:column;align-items:flex-start;gap:4px"><b>PaPote</b><span>Version 21</span><span>Développée par RAFARALAHY Herimanintsoa Lanjatiana</span></div>
   </div>
 </section>
 
@@ -692,7 +692,7 @@ const CFG={apiKey:"AIzaSyDH-FguSfe3eogY4tBLZcEbRvT5zM8Qgv4",authDomain:"landja-c
 const B='https://www.gstatic.com/firebasejs/13.0.0/';
 const st=document.createElement('style');st.textContent='#lcov{position:fixed;inset:0;z-index:99999;background:linear-gradient(160deg,#f76707,#d9480f);display:flex;align-items:center;justify-content:center;padding:20px;font:16px system-ui,sans-serif}#lcov .cd{background:#fff;color:#1f2328;border-radius:20px;padding:20px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:10px}#lcov h2{margin:0;text-align:center;color:#d9480f}#lcov input{font:inherit;padding:13px;border:1px solid #d0d5dd;border-radius:12px;width:100%;box-sizing:border-box}#lcov button{font:inherit;font-weight:800;border:0;border-radius:12px;padding:14px;background:#d9480f;color:#fff}#lcov .t{display:flex;gap:6px}#lcov .t button{flex:1;background:#f1f3f5;color:#1f2328;padding:10px}#lcov .t button.on{background:#d9480f;color:#fff}#lcov .pw{position:relative}#lcov .pw input{padding-right:52px}#lcov .pw button{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;color:#555;padding:8px 10px;border-radius:10px;line-height:0}#lcov .pw svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}#lcov button.lk{background:none;color:#d9480f;padding:6px;font-weight:600;text-decoration:underline}#lcer{color:#c92a2a;min-height:1.2em;font-size:.9rem;text-align:center}';document.head.appendChild(st);
 const ov=document.createElement('div');ov.id='lcov';
-ov.innerHTML='<div class="cd"><h2>PaPote</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 20</small></div>';
+ov.innerHTML='<div class="cd"><h2>PaPote</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 21</small></div>';
 document.body.appendChild(ov);
 const $$=i=>document.getElementById(i);addEventListener('error',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+e.message}});addEventListener('unhandledrejection',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+((e.reason&&(e.reason.code||e.reason.message))||e.reason)}});let reg=0,FS,AUTH,db,au,me,pname='',subs={},hb=0;
 const setM=r=>{reg=r;$$('lct1').className=r?'':'on';$$('lct2').className=r?'on':'';$$('lcn').style.display=r?'block':'none';$$('lcgo').textContent=r?'Créer mon compte':'Se connecter';$$('lcfg').style.display=r?'none':'block';$$('lcer').textContent=''};
@@ -703,7 +703,7 @@ $$('lct1').onclick=()=>setM(0);$$('lct2').onclick=()=>setM(1);
 const ERR={'timeout':'Le serveur ne répond pas (20 s). Vérifiez internet et réessayez.','auth/invalid-credential':'Email ou mot de passe incorrect','auth/wrong-password':'Email ou mot de passe incorrect','auth/user-not-found':'Email ou mot de passe incorrect','auth/email-already-in-use':'Cet email a déjà un compte','auth/weak-password':'Mot de passe trop court (6 caractères minimum)','auth/invalid-email':'Adresse email invalide','auth/missing-email':'Entrez votre adresse email','auth/network-request-failed':'Pas de connexion internet','auth/too-many-requests':'Trop d\'essais, réessayez plus tard'};
 $$('lcgo').onclick=async()=>{const e=$$('lce').value.trim(),p=$$('lcp').value,n=$$('lcn').value.trim();if(!AUTH){$$('lcer').textContent='Chargement… ou pas de connexion internet';return}if(!e||!p){$$('lcer').textContent='Email et mot de passe obligatoires';return}if(reg&&!n){$$('lcer').textContent='Entrez votre nom';return}
  $$('lcgo').disabled=true;$$('lcgo').style.opacity='.6';$$('lcer').style.color='#555';$$('lcer').textContent=reg?'Création du compte…':'Connexion…';
- try{await Promise.race([(async()=>{if(reg){pname=n;const r=await AUTH.createUserWithEmailAndPassword(au,e,p);await AUTH.updateProfile(r.user,{displayName:n})}else await AUTH.signInWithEmailAndPassword(au,e,p)})(),new Promise((_,j)=>setTimeout(()=>j({code:'timeout'}),20000))]);$$('lcer').textContent=''}catch(x){$$('lcer').style.color='#c92a2a';$$('lcer').textContent=ERR[x.code]||('Erreur : '+(x.code||x.message))}
+ try{await Promise.race([(async()=>{if(reg){pname=n;justReg=true;const r=await AUTH.createUserWithEmailAndPassword(au,e,p);await AUTH.updateProfile(r.user,{displayName:n});try{await AUTH.sendEmailVerification(r.user)}catch(x){}}else await AUTH.signInWithEmailAndPassword(au,e,p)})(),new Promise((_,j)=>setTimeout(()=>j({code:'timeout'}),20000))]);$$('lcer').textContent=''}catch(x){$$('lcer').style.color='#c92a2a';$$('lcer').textContent=ERR[x.code]||('Erreur : '+(x.code||x.message))}
  $$('lcgo').disabled=false;$$('lcgo').style.opacity='1'};
 $$('lcfg').onclick=async()=>{const e=$$('lce').value.trim();const er=$$('lcer');if(!AUTH){er.style.color='#c92a2a';er.textContent='Chargement… ou pas de connexion internet';return}if(!e){er.style.color='#c92a2a';er.textContent='Entrez d\'abord votre adresse email ci-dessus';return}er.style.color='#555';er.textContent='Envoi…';$$('lcfg').disabled=true;try{await Promise.race([AUTH.sendPasswordResetEmail(au,e),new Promise((_,j)=>setTimeout(()=>j({code:'timeout'}),20000))]);er.style.color='#2b8a3e';er.textContent='Si un compte existe avec cette adresse, un email vient d\'être envoyé. Regardez aussi dans les Spams.'}catch(x){er.style.color='#c92a2a';er.textContent=ERR[x.code]||('Erreur : '+(x.code||x.message))}$$('lcfg').disabled=false};
 const cid=o=>[me.uid,o].sort().join('_');
@@ -771,6 +771,18 @@ async function admin(){cm();
   $('adc').onclick=async()=>{$('adc').disabled=true;try{const cfg=await mk(tmp);await FS.setDoc(FS.doc(db,'privateAllowed',u.uid),{email:em,salt:cfg.salt,hash:cfg.hash,it:cfg.it,tmp:true,ts:Date.now()});await FS.setDoc(FS.doc(db,'chats',cid(u.uid)),{members:[me.uid,u.uid]},{merge:true});await FS.setDoc(FS.doc(FS.collection(db,'chats',cid(u.uid),'messages')),{from:me.uid,t:txt,ts:Date.now()});cm();toast('Autorisation envoyée ✓')}catch(e){$('adc').disabled=false;toast("Échec de l'envoi")}}}}
 LC.admin=admin;Object.defineProperty(LC,'isOwner',{get(){return !!me&&me.email.toLowerCase()===OWNER}});
 const _ep=enterPriv;enterPriv=function(){cur.plr=Date.now();return _ep()};const _oc=openChat;openChat=function(i){S.cts[i].lr=Date.now();return _oc(i)};
+let justReg=false;
+function showVerify(u){
+ const cd=ov.querySelector('.cd');ov.dataset.v='1';ov.style.display='flex';
+ cd.innerHTML='<h2>Vérifiez votre email</h2><p style="margin:0;text-align:center;font-size:.95rem">Un email de vérification a été envoyé à <b id="lcvm"></b>. Touchez le lien dans cet email (regardez aussi dans les Spams), puis revenez ici.</p><div id="lcer"></div><button id="lcvk">J\'ai vérifié mon email</button><button id="lcvs" class="lk">Renvoyer l\'email</button><button id="lcvo" class="lk">Se déconnecter</button>';
+ $$('lcvm').textContent=u.email||'';const er=$$('lcer');
+ const send=async()=>{try{await AUTH.sendEmailVerification(u);er.style.color='#2b8a3e';er.textContent='Email envoyé. Regardez aussi dans les Spams.'}catch(x){er.style.color='#c92a2a';er.textContent=x&&x.code==='auth/too-many-requests'?'Trop d\'essais, réessayez dans quelques minutes':'Impossible d\'envoyer l\'email'}};
+ if(!justReg)send();justReg=false;
+ $$('lcvs').onclick=send;
+ $$('lcvo').onclick=()=>{try{AUTH.signOut(au)}catch(e){location.reload()}};
+ $$('lcvk').onclick=async()=>{er.style.color='#555';er.textContent='Vérification…';try{await u.reload();const cu=au.currentUser;if(cu&&cu.emailVerified){await cu.getIdToken(true);start(cu)}else{er.style.color='#c92a2a';er.textContent='Email pas encore vérifié. Touchez le lien dans l\'email, puis réessayez.'}}catch(x){er.style.color='#c92a2a';er.textContent='Erreur : '+(x.code||x.message)}}
+}
+LC.verify=showVerify;
 let cOK=0,cT=0,CK='';
 const CSTD=u=>FS.doc(db,'users',u.uid,'store','contacts');
 const cstrip=c=>({n:c.n||c.p,p:c.p,av:c.av||'🙂',f:c.f?1:0,mu:c.mu?1:0,b:c.b?1:0,ar:c.ar?1:0,pa:c.pa===false?false:true,bg:c.bg||''});
@@ -811,7 +823,7 @@ async function start(u){me=u;ov.style.display='none';cOK=0;
  if(u.email.toLowerCase()===OWNER){AL=AL||{};try{await FS.setDoc(FS.doc(db,'privateAllowed',u.uid),{email:u.email.toLowerCase(),ts:Date.now()},{merge:true})}catch(e){}}
  if(!AL)PCFG=DUMMY;
  await prof();clearInterval(hb);hb=setInterval(()=>{if(!document.hidden)prof()},30000);await cloudLoad(u);LC.sync()}
-function stop(){cOK=0;PCFG=null;clearInterval(hb);Object.values(subs).forEach(a=>a.forEach(f=>f&&f()));subs={};me=null;ov.style.display='flex'}
+function stop(){if(ov.dataset.v){location.reload();return}cOK=0;PCFG=null;clearInterval(hb);Object.values(subs).forEach(a=>a.forEach(f=>f&&f()));subs={};me=null;ov.style.display='flex'}
 $('lcout').onclick=()=>{AUTH.signOut(au)};
 (async()=>{try{const[a,b,c]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-firestore.js')]);
  const app=a.initializeApp(CFG);FS=c;au=b.getAuth(app);db=c.getFirestore(app);
@@ -819,7 +831,7 @@ $('lcout').onclick=()=>{AUTH.signOut(au)};
  try{await b.setPersistence(au,b.inMemoryPersistence)}catch(e){}
  try{if(au.authStateReady)await au.authStateReady();if(au.currentUser)await b.signOut(au)}catch(e){}
  AUTH=b;
- b.onAuthStateChanged(au,u=>u?start(u):stop())}catch(e){$$('lcer').textContent='Pas de connexion internet : impossible de charger Firebase'}})();
+ b.onAuthStateChanged(au,u=>{if(!u){stop();return}if(!u.emailVerified){showVerify(u);return}start(u)})}catch(e){$$('lcer').textContent='Pas de connexion internet : impossible de charger Firebase'}})();
 })();
 </script>
 </body></html>
