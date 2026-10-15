@@ -191,6 +191,21 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
 #pvw img{max-width:100%;max-height:82%;object-fit:contain;pointer-events:none;-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
 #pvw b{color:#fff;margin-top:12px}
 #pvw button{position:absolute;top:calc(12px + env(safe-area-inset-top));right:12px;width:44px;height:44px;border-radius:50%;background:#fff3;color:#fff;font-size:1.4rem}
+
+/* Style chaleureux */
+:root{--bg:#fffaf6;--cd:#fdeee2;--bd:#f3dccb;--ot:#ffe8d6;--tx:#3b2416;--mu:#8a6a55}
+.tb{background:linear-gradient(135deg,color-mix(in srgb,var(--or) 78%,#fff),var(--or));box-shadow:0 3px 10px color-mix(in srgb,var(--or) 35%,transparent)}
+:root:not([data-t=dark]) .row{background:#fff}
+.row{border-bottom-color:color-mix(in srgb,var(--or) 12%,var(--bd))}
+.nm{font-weight:700}
+.ct{background:color-mix(in srgb,var(--or) 10%,var(--bg));box-shadow:0 0 0 2px color-mix(in srgb,var(--or) 22%,transparent)}
+.bg{background:var(--or)}
+#fab{background:linear-gradient(135deg,color-mix(in srgb,var(--or) 78%,#fff),var(--or));box-shadow:0 6px 16px color-mix(in srgb,var(--or) 40%,transparent)}
+.b{border-radius:22px 22px 6px 22px;background:linear-gradient(135deg,color-mix(in srgb,var(--or) 82%,#fff),var(--or));box-shadow:0 2px 6px color-mix(in srgb,var(--or) 22%,transparent)}
+.b.o{border-radius:22px 22px 22px 6px;background:var(--ot);box-shadow:0 1px 4px color-mix(in srgb,var(--or) 14%,transparent)}
+:root:not([data-t=dark]) .cb{background:#fff}
+.cb textarea{border-color:var(--bd)}
+.rd.s{background:linear-gradient(135deg,color-mix(in srgb,var(--or) 78%,#fff),var(--or))}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head>
 <body>
@@ -203,7 +218,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
   <div class="f3">Discutez, appelez, partagez</div>
   <div class="bar"><i></i></div><div id="lm">Chargement des contacts…</div>
   <button class="bt" id="go">Commencer</button>
-  <div class="ver">Version 1.0 (test)<br>Développée par RAFARALAHY Herimanintsoa Lanjatiana</div>
+  <div class="ver">Version 17<br>Développée par RAFARALAHY Herimanintsoa Lanjatiana</div>
 </section>
 
 <section class="pg" id="pf">
@@ -253,7 +268,7 @@ input[type=checkbox]{width:24px;height:24px;accent-color:var(--or)}
     <div class="opt" style="flex-direction:column;align-items:flex-start"><span>Couleur du thème</span><div class="avs" id="s6"></div></div>
     <label class="opt" style="display:none"><span>Ne pas déranger (appels entrants)</span><input type="checkbox" id="s7"></label>
     <div class="opt"><span id="lcem"></span></div><button class="bt" id="s5">Mon profil</button><button class="bt" id="lcout" style="background:var(--cd);color:var(--tx)">Se déconnecter</button>
-    <div class="opt" style="flex-direction:column;align-items:flex-start;gap:4px"><b>Landja Chat</b><span>Version 1.0 (test)</span><span>Développée par RAFARALAHY Herimanintsoa Lanjatiana</span></div>
+    <div class="opt" style="flex-direction:column;align-items:flex-start;gap:4px"><b>Landja Chat</b><span>Version 17</span><span>Développée par RAFARALAHY Herimanintsoa Lanjatiana</span></div>
   </div>
 </section>
 
@@ -328,7 +343,7 @@ $('b2').onclick=()=>form(-1);$('fab').onclick=()=>mode==='c'?dpad():form(-1);
 $('b3').onclick=()=>menu('Menu',[['👤 Profil',()=>{first=false;rpf();go('pf')}],['⭐ Messages favoris',favList],['📦 Archivées',archList],...(window.LC&&LC.isOwner?[['🔑 Accès privés',()=>LC.admin()]]:[]),['⚙️ Réglages',()=>{rst();go('st')}]]);
 $('bb').onclick=e=>{const b=e.target.closest('[data-m]');if(b){mode=b.dataset.m;rc()}};
 function sim(i){const c=S.cts[i];S.chats[c.p]=S.chats[c.p]||[];S.chats[c.p].push(stamp({me:0,k:'t',t:'Salama ! (message simulé)'}));c.u=(c.u||0)+1;if(!c.mu)sIn();save();rc()}
-$('cl').onpointerdown=e=>{const r=e.target.closest('.row');if(!r||r.dataset.h!==undefined)return;lp=setTimeout(()=>{lp=-1;const i=+r.dataset.i,c=S.cts[i];menu(E(c.n),[[c.f?'☆ Retirer des favoris':'⭐ Favori',()=>{c.f=!c.f;save();rc()}],['👤 Voir le profil',()=>profView(i)],['✉️ Marquer comme non lu',()=>{c.u=c.u||1;save();rc();toast('Marqué comme non lu')}],['🔒 Espace privé du contact : '+(c.pa===false?'désactivé':'activé'),()=>{c.pa=c.pa===false;save();toast('Espace privé du contact '+(c.pa===false?'désactivé':'activé'))}],['✏️ Modifier',()=>form(i)],[c.mu?'🔔 Réactiver le son':'🔕 Sourdine',()=>{c.mu=!c.mu;save();rc()}],[c.b?'✅ Débloquer':'🚫 Bloquer',()=>{c.b=!c.b;save();rc();toast(c.b?'Contact bloqué':'Contact débloqué')}],['⋯ Plus…',()=>more(i)],['📦 Archiver',()=>{c.ar=1;save();rc();toast('Conversation archivée')}],['🗑️ Supprimer',()=>menu('Supprimer '+E(c.n)+' ?',[['Oui, supprimer',()=>{S.gone=S.gone||{};S.gone[S.cts[i].p]=1;S.cts.splice(i,1);save();rc()}],['Annuler',()=>{}]])]])},600)};
+$('cl').onpointerdown=e=>{const r=e.target.closest('.row');if(!r||r.dataset.h!==undefined)return;lp=setTimeout(()=>{lp=-1;const i=+r.dataset.i,c=S.cts[i];menu(E(c.n),[[c.f?'☆ Retirer des favoris':'⭐ Favori',()=>{c.f=!c.f;save();rc()}],['👤 Voir le profil',()=>profView(i)],['✉️ Marquer comme non lu',()=>{c.u=c.u||1;save();rc();toast('Marqué comme non lu')}],['🔒 Espace privé du contact : '+(c.pa===false?'désactivé':'activé'),()=>{c.pa=c.pa===false;save();toast('Espace privé du contact '+(c.pa===false?'désactivé':'activé'))}],['✏️ Modifier',()=>form(i)],[c.mu?'🔔 Réactiver le son':'🔕 Sourdine',()=>{c.mu=!c.mu;save();rc()}],[c.b?'✅ Débloquer':'🚫 Bloquer',()=>{c.b=!c.b;save();rc();toast(c.b?'Contact bloqué':'Contact débloqué')}],['⋯ Plus…',()=>more(i)],['📦 Archiver',()=>{c.ar=1;save();rc();toast('Conversation archivée')}],['🗑️ Supprimer',()=>delCt(i)]])},600)};
 ['onpointerup','onpointermove','onpointercancel'].forEach(h=>$('cl')[h]=()=>{if(lp>0)clearTimeout(lp)});
 $('cl').onclick=e=>{if(lp===-1){lp=0;return}const s=e.target.closest('[data-s]');if(s){profView(+s.dataset.s);return}const r=e.target.closest('.row');if(!r)return;const hh=r.dataset.h;if(hh!==undefined){const x=S.calls[+hh];recall(x.p,x.n,x.av,x.vid);return}const i=+r.dataset.i;if(mode==='m')openChat(i);else if(mode==='c')startCall(i);else startCall(i,true)};
 function form(i){
@@ -651,7 +666,8 @@ const PHRE=/^data:image\/(jpeg|png);base64,[A-Za-z0-9+\/=]+$/;
 function viewPhoto(src,name){if(!PHRE.test(src||''))return;const o=document.createElement('div');o.id='pvw';const im=new Image();im.draggable=false;im.alt='';im.src=src;const nm=document.createElement('b');nm.textContent=name||'';const x=document.createElement('button');x.textContent='✕';x.setAttribute('aria-label','Fermer');o.append(im,nm,x);const kd=e=>{if(e.key==='Escape')cl()};const cl=()=>{o.remove();document.removeEventListener('keydown',kd)};document.addEventListener('keydown',kd);o.onclick=cl;o.oncontextmenu=e=>e.preventDefault();document.body.appendChild(o)}
 function loadPub(c){return window.LC&&LC.pub?LC.pub(c):Promise.resolve(null)}
 function fillPub(c){loadPub(c).then(d=>{if(!d)return;const a=$('pvph');if(a&&PHRE.test(d.big||'')){const im=new Image();im.draggable=false;im.alt='';im.src=d.big;im.style.cssText='width:100%;height:100%;object-fit:cover;pointer-events:none';a.innerHTML='';a.appendChild(im);a.style.overflow='hidden';a.style.cursor='zoom-in';a.onclick=()=>viewPhoto(d.big,c.n)}const b=$('pvbio');if(b&&typeof d.bio==='string'&&d.bio){b.textContent=d.bio.slice(0,300);b.style.display='block'}}).catch(()=>{})}
-function profView(i){const c=S.cts[i];modal(`<div style="text-align:center"><div class="ct" id="pvph" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small><p class="bio" id="pvbio"></p></div><button class="mi" id="pvx">Fermer</button>`);$('pvx').onclick=cm;fillPub(c)}
+function delCt(i){const c=S.cts[i];if(!c)return;menu('Supprimer '+E(c.n)+' ?',[['Oui, supprimer le contact',()=>{S.gone=S.gone||{};S.gone[c.p]=1;S.cts.splice(i,1);save();rc();if($('ch').classList.contains('on'))root('ct');toast('Contact supprimé')}],['Annuler',()=>{}]])}
+function profView(i){const c=S.cts[i];modal(`<div style="text-align:center"><div class="ct" id="pvph" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small><p class="bio" id="pvbio"></p></div><button class="mi" id="pvd" style="color:#c92a2a">🗑️ Supprimer le contact</button><button class="mi" id="pvx">Fermer</button>`);$('pvx').onclick=cm;$('pvd').onclick=()=>{cm();delCt(i)};fillPub(c)}
 function copyT(t){if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>toast('Copié ✓'),()=>toast('Copie impossible'));else toast('Copie impossible')}
 function shareC(c){const t='👤 '+c.n+' · '+c.p;if(navigator.share)navigator.share({text:t}).catch(()=>{});else copyT(t)}
 const BGS=[['Par défaut',''],['Vert doux','#2b8a3e33'],['Bleu doux','#1971c233'],['Rose doux','#c2255c33'],['Violet doux','#6741d933'],['Jaune doux','#f0a50040'],['Gris','#49505733']];
@@ -659,12 +675,13 @@ function bgMenu(i){const c=S.cts[i];menu('Couleur de la conversation',BGS.map(b=
 function clearChat(i){const c=S.cts[i];S.del=S.del||{};(S.chats[c.p]||[]).forEach(m=>{if(m.fid)S.del[m.fid]=1});S.chats[c.p]=[];c.u=0;save();rc();toast('Conversation vidée')}
 function more(i){const c=S.cts[i];menu(E(c.n)+' · Plus',[["📋 Copier l'adresse email",()=>copyT(c.p)],['📤 Partager ce contact',()=>shareC(c)],['🎨 Couleur de la conversation',()=>bgMenu(i)],['🧹 Vider la conversation',()=>menu('Vider la conversation avec '+E(c.n)+' ?',[['Oui, vider (chez moi seulement)',()=>clearChat(i)],['Annuler',()=>{}]])]])}
 function fiche(){const c=cur,i=S.cts.indexOf(c);
-  modal(`<div style="text-align:center"><div class="ct" id="pvph" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small><p class="bio" id="pvbio"></p></div><button class="mi" id="f1" style="display:none">📞 Appeler</button><button class="mi" id="f2" style="display:none">🎥 Vidéo</button><button class="mi" id="f3">${c.b?'✅ Débloquer':'🚫 Bloquer'}</button><button class="mi" id="f4">${c.mu?'🔔 Réactiver le son':'🔕 Sourdine'}</button><button class="mi" id="f5">📦 Archiver</button>`);
+  modal(`<div style="text-align:center"><div class="ct" id="pvph" style="width:96px;height:96px;font-size:3rem;margin:0 auto">${E(c.av)}</div><h3>${E(c.n)}</h3><div>${E(c.p)}</div><small>${c.on?'en ligne':'hors ligne'}</small><p class="bio" id="pvbio"></p></div><button class="mi" id="f1" style="display:none">📞 Appeler</button><button class="mi" id="f2" style="display:none">🎥 Vidéo</button><button class="mi" id="f3">${c.b?'✅ Débloquer':'🚫 Bloquer'}</button><button class="mi" id="f4">${c.mu?'🔔 Réactiver le son':'🔕 Sourdine'}</button><button class="mi" id="f5">📦 Archiver</button><button class="mi" id="f6" style="color:#c92a2a">🗑️ Supprimer le contact</button>`);
   fillPub(c);
   $('f1').onclick=()=>{cm();startCall(i)};$('f2').onclick=()=>{cm();startCall(i,true)};
   $('f3').onclick=()=>{c.b=!c.b;save();cm();toast(c.b?'Contact bloqué':'Contact débloqué')};
   $('f4').onclick=()=>{c.mu=!c.mu;save();cm();toast(c.mu?'Sourdine activée':'Son réactivé')};
-  $('f5').onclick=()=>{c.ar=1;save();cm();toast('Conversation archivée');back()}}
+  $('f5').onclick=()=>{c.ar=1;save();cm();toast('Conversation archivée');back()};
+  $('f6').onclick=()=>{cm();delCt(i)}}
 $('ca').onclick=$('cn').onclick=fiche;
 theme();
 </script>
@@ -675,7 +692,7 @@ const CFG={apiKey:"AIzaSyDH-FguSfe3eogY4tBLZcEbRvT5zM8Qgv4",authDomain:"landja-c
 const B='https://www.gstatic.com/firebasejs/13.0.0/';
 const st=document.createElement('style');st.textContent='#lcov{position:fixed;inset:0;z-index:99999;background:linear-gradient(160deg,#f76707,#d9480f);display:flex;align-items:center;justify-content:center;padding:20px;font:16px system-ui,sans-serif}#lcov .cd{background:#fff;color:#1f2328;border-radius:20px;padding:20px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:10px}#lcov h2{margin:0;text-align:center;color:#d9480f}#lcov input{font:inherit;padding:13px;border:1px solid #d0d5dd;border-radius:12px;width:100%;box-sizing:border-box}#lcov button{font:inherit;font-weight:800;border:0;border-radius:12px;padding:14px;background:#d9480f;color:#fff}#lcov .t{display:flex;gap:6px}#lcov .t button{flex:1;background:#f1f3f5;color:#1f2328;padding:10px}#lcov .t button.on{background:#d9480f;color:#fff}#lcov .pw{position:relative}#lcov .pw input{padding-right:52px}#lcov .pw button{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;color:#555;padding:8px 10px;border-radius:10px;line-height:0}#lcov .pw svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}#lcov button.lk{background:none;color:#d9480f;padding:6px;font-weight:600;text-decoration:underline}#lcer{color:#c92a2a;min-height:1.2em;font-size:.9rem;text-align:center}';document.head.appendChild(st);
 const ov=document.createElement('div');ov.id='lcov';
-ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 15</small></div>';
+ov.innerHTML='<div class="cd"><h2>Landja chat</h2><div class="t"><button id="lct1" class="on">Connexion</button><button id="lct2">Créer un compte</button></div><input id="lcn" placeholder="Votre nom" style="display:none" maxlength="30"><input id="lce" type="email" placeholder="Adresse email" autocapitalize="none" autocomplete="email"><div class="pw"><input id="lcp" type="password" placeholder="Mot de passe (6 caractères minimum)" autocomplete="current-password"><button id="lcey" type="button" aria-label="Afficher le mot de passe"></button></div><div id="lcer"></div><button id="lcgo">Se connecter</button><button id="lcfg" class="lk">Mot de passe oublié ?</button><small style="text-align:center;color:#888">version 17</small></div>';
 document.body.appendChild(ov);
 const $$=i=>document.getElementById(i);addEventListener('error',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+e.message}});addEventListener('unhandledrejection',e=>{const x=document.getElementById('lcer');if(x){x.style.color='#c92a2a';x.textContent='Erreur : '+((e.reason&&(e.reason.code||e.reason.message))||e.reason)}});let reg=0,FS,AUTH,db,au,me,pname='',subs={},hb=0;
 const setM=r=>{reg=r;$$('lct1').className=r?'':'on';$$('lct2').className=r?'on':'';$$('lcn').style.display=r?'block':'none';$$('lcgo').textContent=r?'Créer mon compte':'Se connecter';$$('lcfg').style.display=r?'none':'block';$$('lcer').textContent=''};
@@ -784,7 +801,11 @@ async function cloudLoad(u){
 async function start(u){me=u;ov.style.display='none';cOK=0;
  if(S.acct&&S.acct!==u.uid)Object.assign(S,{cts:[],chats:{},pc:{},uidOf:{},dr:{},del:{},gone:{},pcfg:null,me:{n:'',av:(S.me&&S.me.av)||'🙂',img:'',big:'',bio:''}});
  S.acct=u.uid;S.uidOf=S.uidOf||{};S.del=S.del||{};S.gone=S.gone||{};S.cts=S.cts.filter(x=>!/^034000000\d$/.test(x.p));
- const nm=pname||u.displayName;if(nm&&!S.me.n)S.me.n=nm;save();rc();$$('lcem').textContent='Compte : '+u.email;
+ let nm=pname||u.displayName;
+ if(!S.me.n){try{const ud=await FS.getDoc(FS.doc(db,'users',u.uid));if(ud.exists()){const x=ud.data();if(!nm&&x.name&&x.name!==u.email)nm=x.name;if(x.av&&(!S.me.av||S.me.av==='🙂'))S.me.av=x.av}}catch(e){}}
+ if(!nm)nm=u.email.split('@')[0];
+ if(!S.me.n)S.me.n=nm;
+ save();rc();$$('lcem').textContent='Compte : '+u.email;
  const prof=()=>FS.setDoc(FS.doc(db,'users',u.uid),{name:S.me.n||u.email,email:u.email,emailLower:u.email.toLowerCase(),av:S.me.av,lastSeen:Date.now(),pa:true},{merge:true}).catch(e=>console.log(e.code));
  try{const sn=await FS.getDoc(FS.doc(db,'users',u.uid,'private','cfg'));PCFG=sn.exists()?sn.data():null;S.pcfg=PCFG}catch(e){PCFG=S.pcfg||null}try{const al=await FS.getDoc(FS.doc(db,'privateAllowed',u.uid));AL=al.exists()?al.data():null}catch(e){}
  if(u.email.toLowerCase()===OWNER){AL=AL||{};try{await FS.setDoc(FS.doc(db,'privateAllowed',u.uid),{email:u.email.toLowerCase(),ts:Date.now()},{merge:true})}catch(e){}}
@@ -793,7 +814,11 @@ async function start(u){me=u;ov.style.display='none';cOK=0;
 function stop(){cOK=0;PCFG=null;clearInterval(hb);Object.values(subs).forEach(a=>a.forEach(f=>f&&f()));subs={};me=null;ov.style.display='flex'}
 $('lcout').onclick=()=>{AUTH.signOut(au)};
 (async()=>{try{const[a,b,c]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-firestore.js')]);
- const app=a.initializeApp(CFG);AUTH=b;FS=c;au=b.getAuth(app);db=c.getFirestore(app);
+ const app=a.initializeApp(CFG);FS=c;au=b.getAuth(app);db=c.getFirestore(app);
+ /* Connexion à chaque ouverture : la session n'est plus conservée, il faut toucher « Se connecter » */
+ try{await b.setPersistence(au,b.inMemoryPersistence)}catch(e){}
+ try{if(au.authStateReady)await au.authStateReady();if(au.currentUser)await b.signOut(au)}catch(e){}
+ AUTH=b;
  b.onAuthStateChanged(au,u=>u?start(u):stop())}catch(e){$$('lcer').textContent='Pas de connexion internet : impossible de charger Firebase'}})();
 })();
 </script>
